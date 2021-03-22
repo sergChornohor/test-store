@@ -1,16 +1,21 @@
 
 // variables
-$bg-color: #f8f8f8;
+$bg-color: #EEE5E9;
+$bg-color1: #FAF9F9;
 $yellow-color: #FFC200;
-$blue-color: rgb(3, 108, 150);
-$bg-grey-color: #F7F6F3;
-$dark-grey-color: #808080;
+$blue-color: #046C94;
+$white-color: #F7FFF6;
+$green-color: #6DA34D;
+$dark-blue-color: #0A122A;
 $black-color: #000;
-$white-color: #fff;
-$user-grey-color: #202020;
-$head-white-color: #EAEAEA;
-$head-menu-font-color: #131313;
-$chat-icon-color: #FFF8DD;
+
+$buy-btn-green: #77d42a;
+$buy-btn-green1: #5cb811;
+$buy-btn-brdr: #268a16;
+
+$cart-btn-red: #fe1900;
+$cart-btn-red1: #ce0000;
+$cart-btn-brdr: #d83526;
 
 $breakpoints: (
     "phone":        425px,
@@ -112,7 +117,7 @@ box-sizing: border-box;
 }
 html, body{
 width: 100%;
-height: 100vh;
+height: 100%;
 background-color: $bg-color;
 @include flexbox();
 }
@@ -147,560 +152,37 @@ font-weight: 400;
 }
 .wrapper{
   width: 70%;
+  max-width: 1400px;
   margin: 0 auto;
  // flex-direction: row-reverse;
-  height: 100vh;
+  height: 100%;
 }
 .content-wrapper{
 width: 100%;
 /* max-width: 1170px; */
 height: 100vh;
 }
-  
-
-/* HEADER */
-
-// .header-container{
-//   width: 100%;
-//   min-width: 770px;
-//   height: 140px;
-//   background-color: $white-color;
-//   @include mq('tablet-wide') {
-//     min-width: 580px;
-//   }
-//   @include mq('tablet'){
-//     min-width: 430px;
-//     height: 120px;
-//   }
-//   @include mq('phone-wide'){
-//     min-width: 370px;
-//     height: 100px;
-//   }
-// }
-// h3{
-//   font-size: 32px;
-//   font-weight: 400;
-//   @include mq('tablet-wide'){
-//     font-size: 28px;
-//   }
-//   @include mq('tablet'){
-//     font-size: 22px;
-//   }
-//   @include mq('phone-wide'){
-//     font-size: 18px;
-//   }
-// }
-// .header-container-menu{
-//   flex-direction: column;
-//   margin: 45px 0 10px 30px;
-//   min-width: 350px;
-//   @include mq('tablet-wide'){
-//     min-width: 300px;
-//     margin-top: 48px;
-//   }
-//   @include mq('tablet'){
-//     min-width: 240px;
-//     margin-top: 38px;
-//     margin-left: 10px;
-//   }
-//   @include mq('phone-wide'){
-//     // min-width: 260px;
-//     width: 70%;
-//     margin-top: 10px;
-//     margin-left: 10px;
-//   }      
-// }
-// .header-container-menu-head{
-//   width: 100%;
-//   height: 35px;
-//   @include mq('phone-wide'){
-//     width: 200px;
-//   }  
-// }
-// .header-container-menu-head::before{ 
-//   @include pseudo(relative);
-//   transform: translateX(0px);
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 3px;
-//   background-color: $yellow-color;
-//   background-image: url("../assets/image/Shapes@2x.png");
-//   background-size: cover;
-//   @include mq('tablet-wide'){
-//     width: 35px;
-//     height: 35px;
-//     border-radius: 2px;
-//   }
-//   @include mq('tablet'){
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 2px;
-//   }
-//   @include mq('phone-wide'){
-//     width: 25px;
-//     height: 25px;
-//     border-radius: 2px;
-    
-//   }
-// }
-// .header-container-menu-head-etc{
-//   @include circle(30px, 30px);
-//   border: none;
-//   background-color: $head-white-color;
-//   cursor: pointer;
-//   @include mq('tablet-wide'){
-//     width: 25px;
-//     height: 25px;
-//   }
-//   @include mq('tablet'){
-//     width: 22px;
-//     height: 22px;
-//   }
-//   @include mq('phone-wide'){
-//     width: 20px;
-//     height: 20px;
-//   }
-// }
-// // .header-container-menu-nav{
-// // width: 100%;
-// // height: 22px;
-// //  menu{
-// //   width: 100%;
-// //   flex-direction: row;
-// //   list-style-type: none;
-// //   transition: 0.5s;
-// //   li {
-// //     position: relative;
-// //     a{
-// //       text-align: center;
-// //       font-size: 16px;
-// //       opacity: 0.7;
-// //       color: $head-menu-font-color;
-// //       @include mq('tablet'){
-// //         font-size: 14px;
-// //       }
-// //       }
-// //       a:hover, :active, .active{
-// //       color: $black-color;
-// //       opacity: 1;
-// //       cursor: pointer;
-// //       }
-// //       a:hover::before, a:active::before{
-// //       @include pseudo();
-// //       width: 100%;
-// //       height: 2px;
-// //       border-radius: 1px;
-// //       background-color: $yellow-color;
-// //       transform: translateY(31px);          
-// //       }
-
-// //     }
-// //   }
-// // }
-// .header-container-activity{
-//   width: 30%;
-//   min-width: 230px;
-//   max-width: 270px;
-//   height: 30px;
-//   align-self: center;
-//   margin-right: 20px;
-//   @include mq('tablet-wide'){
-//     min-width: 220px;
-//     max-width: 260px;
-//     height: 25px;
-//     margin-right: 10px;
-//     margin-left: 20px; 
-//   }
-//   @include mq('tablet'){
-//     min-width: 200px;
-//     max-width: 230px;
-//     height: 22px;
-//     margin-left: 10px; 
-//   }
-//   @include mq('phone-wide'){
-//     width: 30%;
-//     min-width: 50px;
-//     max-width: 60px;
-//     height: 70px;
-//     margin-left: 10px;
-//     @include flex-wrap(wrap); 
-//     flex-direction: column-reverse;
-//   } 
-// }
-// .header-container-activity-icons{
-//   width: 110px;
-//   @include mq('tablet-wide'){
-//     width: 90px;
-//   }
-//   @include mq('tablet'){
-//     width: 70px;
-//   }
-//   @include mq('phone-wide'){
-//     width: 60px; 
-//   }  
-// }
-// .icon{
-//   @include circle(30px, 30px);
-//   -webkit-background-size: 100% 100%;
-//   background-size: 100% 100%;
-//   cursor: pointer;
-//   @include mq('tablet-wide'){
-//     width: 25px;
-//     height: 25px;
-//   }
-//   @include mq('tablet'){
-//     width: 22px;
-//     height: 22px;
-//   } 
-//   @include mq('phone-wide'){
-//     width: 20px;
-//     height: 20px; 
-//   }  
-// }
-// .icon:first-child{
-// background-image: url(../assets/image/user1.svg);
-// }
-// .icon:nth-child(2){
-// background-image: url(../assets/image/user2.svg);
-// }
-// .icon:nth-child(3){
-// background-image: url(../assets/image/user3.svg);
-// }
-// .header-container-activity-button{
-//   width: 75px;
-//   height: 30px;
-//   border: none;
-//   border-radius: 15px;
-//   cursor: pointer;
-//   span{
-//     font-size: 14px;
-//     font-weight: lighter;
-//     @include mq('tablet-wide'){
-//       font-size: 12px;
-//     }
-//     @include mq('tablet'){
-//       font-size: 11px;
-//     }
-// }
-//   @include mq('tablet-wide'){
-//     height: 25px;
-//     width: 60px; 
-//   }
-//   @include mq('tablet'){
-//     height: 22px;
-//     width: 60px; 
-//   }
-//   @include mq('phone-wide'){
-//     height: 20px;
-//     width: 60px; 
-//   }   
-// }
-// .share{
-//   background-color: $head-white-color;
-// }
-// .chat{
-//   padding: 0 4%;
-//   background-color: $chat-icon-color;
-// span{
-//   color: $yellow-color;
-//   }
-// }
-// .chat-icon{
-// width: 16px;
-// height: 16px;
-// background-image: url(../assets/image/CombinedShape@1x.svg);
-// }
-
-// /* CONTENT */
-
 .content-container{
 @include align-items(flex-start);
 width: 100%;
 overflow-y: scroll;
-height: 85vh;
-background-color: $bg-grey-color;
+height: -webkit-fill-available;
+background-color: $bg-color1;
 }
-// .content-container-data{
-// flex-direction: column;
-// width: 75%;
-// padding: 3%;
-// border-radius: 8px;
-// margin: 30px 0;
-// background-color: $white-color;
-// @include mq('tablet-wide'){
-//   width: 80%;
-// }
-// @include mq('tablet-wide'){
-//   width: 90%;
-// }
-// }
-// .date{
-// width: 100%;
-// height: 20px;
-// margin-bottom: 10px;
-// }
-
-// /* SIDE-MENU */
-
-// .side-menu{
-//   align-items: flex-start;
-//   @include justify-content(flex-start);
-//   background-color: $black-color;
-//   min-width: 270px;
-//   height: 100vh;
-//   color: $white-color;
-//   @include mq('tablet-wide') {
-//     min-width: 250px;
-//   }
-//   @include mq('tablet') {
-//     min-width: 180px;
-//   }
-//   @include mq('tablet-small') {
-//     min-width: 40px;
-//   }
-//   @include mq('phone') {
-//     display: none;
-//   }
-//   }
-//   .side-menu-head{
-//   width: 100%;
-//   @include mq('tablet'){
-//     padding: 10px;
-//     padding-top: 30px;
-//   }
-//   @include mq('tablet-small') {
-//     width: 30px;
-//   }
-//   }
-//   .side-menu-head-icon{
-//   width: 22px;
-//   height: 20px;
-//   cursor: pointer;
-//   @include mq('tablet-small') {
-//     width: 30px;
-//   }
-//   }
-//   .side-menu-head-icon-row{
-//   width: 100%;
-//   height: 40%;
-//   }
-//   .side-menu-head-icon-row-yes{
-//   width: 11px;
-//   height: 8px;
-//  }
-//   .side-menu-head-icon-row-yes span::before,
-//   .side-menu-head-icon-row-yes span::after
-//   {
-//   @include pseudo;
-//   background-color: $yellow-color;
-//   height: 2.5px;
-//   border-radius: 2px;
-//   }
-  
-//   .side-menu-head-icon-row-yes span::before{
-//   width: 7px;
-//   transform: translateY(3.5px) translateX(-0.7px) rotateZ(45deg);
-//   }
-//   .side-menu-head-icon-row-yes span::after{
-//   width: 10px;
-//   transform: translateX(2px) translateY(2.5px) rotateZ(-45deg); 
-//   }
-//   .side-menu-head-icon-row-minus{
-//   width: 9px;
-//   height: 8px;
-//   }
-//   .side-menu-head-icon-row-minus span
-//   {
-//   position: absolute;
-//   background-color: $yellow-color;
-//   width: 8px;
-//   height: 2.5px;
-//   border-radius: 2px;
-//   }
-//   .side-menu-head-name{
-//   width: 90px;
-//   height: 30px;
-//   margin-right: 60px;
-//   @include mq('tablet-small') {
-//     display: none;
-//   }
-//   p{
-//     font-size: 16px;
-//     line-height: 30px;
-//     }
-//   @include mq('tablet'){
-//     width: 80px;
-//     height: 30px;
-//     margin-right: 10px; 
-//   } 
-//   }     
-  
-//   .side-menu-head-search{
-//   width: 16px;
-//   height: 16px;
-//   cursor: pointer;
-//   @include mq('tablet-small') {
-//     display: none;
-//   }
-//   span{
-//     position: absolute;
-//     background-color: $dark-grey-color;
-//     @include circle(14px, 14px);
-//     z-index: 0;
-//     }
-//   span::before,
-//   span::after{
-//     @include pseudo();
-//     }
-//   span::before{
-//     @include circle(9.5px, 9.5px);
-//     background-color: $black-color;
-//     z-index: 1;
-//     transform: translateX(2.25px) translateY(2.25px);
-//     }
-//   span::after{
-//     width: 7px;
-//     height: 2.5px;
-//     border-radius: 1px;
-//     background-color: $dark-grey-color;
-//     z-index: 2;
-//     transform: translateX(10px) translateY(12px) rotateZ(45deg);
-//     }
-//   }
-//   .side-menu-user{  
-//   width: 100%;
-//   height: 90px;
-//   background-color: $user-grey-color;
-//   @include mq('tablet'){
-//     padding: 5px;
-//     height: 70px;
-//   }
-//   @include mq('tablet-small') {
-//     display: none;
-//   }
-//   }
-//   .side-menu-user-icon{
-//   @include circle(48px, 48px);
-//   background-image: url(https://pbs.twimg.com/profile_images/968940018956939266/9ArTAIxH_400x400.jpg);
-//   background-size: 100% 100%;
-//   @include mq('tablet'){
-//     height: 40px;
-//     width: 40px;
-//   }
-//   }
-//   .side-menu-user-name{
-//   flex-wrap: wrap;
-//   @include justify-content(flex-start);
-//   width: 108px;
-//   height: 40px;
-//   h5{
-//     font-size: 14px;
-//     font-weight: 400;
-//     letter-spacing: 1px;
-//     }
-//   @include mq('tablet') {
-//     width: 100px;
-//     height: 35px;
-//     h5{
-//       font-size: 12px;
-//       }
-//   }
-//   }
-  
-//   h6{
-//   font-size: 12px;
-//   font-weight: 400;
-//   color: $dark-grey-color;
-//   @include mq('tablet') {
-//     font-size: 10px;
-//   }
-//   } 
-//   .side-menu-user-etc{
-//   width: 20px;
-//   height: 20px;
-//   border: none;
-//   background-color: inherit;
-//   cursor: pointer;
-//   }
-//   .etc,
-//   .etc::before,
-//   .etc::after
-//   {
-//   position: absolute;
-//   @include circle(4px, 4px);
-//   background-color: $dark-grey-color;
-//   }
-//   .etc::before,
-//   .etc::after{
-//   @include pseudo();
-//   transform-origin: center;
-//   }
-//   .etc::before{
-//   transform: translateX(-8px);
-//   }
-//   .etc::after{
-//   transform: translateX(4px);
-//   }
-//   .side-menu-tasks{
-//   width: 100%;
-//   @include mq('tablet'){
-//     width: 100%;
-//     @include flexbox();
-//     padding: 10px;
-//   }
-//   @include mq('tablet-small') {
-//     display: none;
-//   }
-//   }
-//   .side-menu-tasks-completed{
-//   width: 100px;
-//   height: 40px;
-//   cursor: pointer;
-//   @include mq('tablet'){
-//     width: 90px;
-//   }
-//   }
-//   h4{
-//   font-size: 20px;
-//   font-weight: 400;
-//   @include mq('tablet') {
-//     font-size: 18px;
-//   }
-//   }
-//   .side-menu-tasks-open{
-//   width: 100px;
-//   height: 40px;
-//   cursor: pointer;
-//   @include mq('tablet') {
-//     width: 90px;
-//   }
-//   }
-//   .side-menu-menu{
-//   padding-top: 20px;
-//   @include mq('tablet'){
-//     padding: 10px;
-//     padding-top: 10px;
-//   }
-//   @include mq('tablet-small') {
-//     display: none;
-//   }
-//   }
-//   .side-menu-menu menu{
-//   list-style-type: none;
-//   text-decoration: none;
-//   }
-//   .side-menu-menu li{
-//   height: 40px;
-//   @include flexbox();
-//   cursor: pointer;
-//   }
-//   #notifications{
-//   @include flexbox();
-//   @include justify-content(center);
-//   @include align-items(center);
-//   color: $black-color;
-//   font-size: 14px;
-//   margin-left: 20px;
-//   @include circle(20px, 20px);
-//   background-color: $yellow-color;
-//   }
+.btn {
+  width: 130px;
+  height: 50px;	
+	border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+  margin: 0;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}

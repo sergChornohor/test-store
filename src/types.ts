@@ -5,9 +5,8 @@ export interface HeaderLinks{
 }
 
 export interface ProductCategories{
+    img: string,
     title: string,
-    url: string,
-    imgs?: string[];
 }
 
 export interface Tasks{
@@ -17,8 +16,8 @@ export interface Tasks{
     status: string,
 }
 
-export enum Status{
-    ToDo = 'To Do',
-    InProgress = 'In Progress',
-    Done = 'Done'
-}
+// export enum Status{
+//     ToDo = 'To Do',
+//     InProgress = 'In Progress',
+//     Done = 'Done'
+// }

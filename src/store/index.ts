@@ -1,13 +1,10 @@
-import Vue  from 'vue';
+import Vue from 'vue';
 import Vuex from 'vuex';
-import { HeaderLinks, ProductCategories } from '@/types';
 // import { Vue } from 'vue-class-component';
-
-Vue.use(Vuex);
 
 const ProductsStore = new Vuex.Store({
   state: {
-    Categorieslist : [
+    Categorieslist: [
       {
         img: 'camera.png',
         title: 'CAMERA',
@@ -32,10 +29,11 @@ const ProductsStore = new Vuex.Store({
         img: 'pngwave.png',
         title: 'PNGWAVE',
       },
-    ]
+    ],
   },
-})
-
-
+  getters: {
+    CatList: (state) => state.Categorieslist,
+  },
+});
 
 export default ProductsStore;

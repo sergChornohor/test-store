@@ -16,11 +16,11 @@ import { HeaderLinks } from '../types';
 
 export default class TheHeader extends Vue {
   links: Array<HeaderLinks> = [
-    { title: 'Tasks', url: '/', exact: true },
-    { title: 'Kanban', url: '/kanban', exact: false },
-    { title: 'Activity', url: '/activity', exact: false },
-    { title: 'Calendar', url: '/calendar', exact: false },
-    { title: 'Files', url: '/files', exact: false },
+    { title: 'Home', url: '/', exact: true },
+    { title: 'Category', url: '/category', exact: false },
+    { title: 'Products', url: '/products', exact: false },
+    { title: 'About', url: '/about', exact: false },
+    { title: 'Cart', url: '/cart', exact: false },
   ];
 }
 </script>
@@ -34,7 +34,7 @@ a{
 }
 .header-container{
   width: 100%;
-  height: 30px;
+  height: 50px;
   background-color: $blue-color; }
   menu{
     width: 600px;
@@ -49,5 +49,5 @@ a{
         font-size: 17px;
         color: $yellow-color; }
       a:hover, a:active{
-        color: $head-white-color; }
+        color: $white-color; }
 </style>
