@@ -26,7 +26,7 @@ const routes = [
     path: '/product',
     name: 'Product',
     component: ProductView,
-    meta: { breadCrumbs: [{ to: '/product', text: 'product' }] },
+    meta: { breadCrumbs: [{ to: '/products/product', text: 'product' }] },
   },
 ];
 

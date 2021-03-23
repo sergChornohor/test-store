@@ -1,11 +1,12 @@
 <template lang="pug">
 table.table-grid
-  tbody
-    th
-      td
-        ProductCard
-      td
-        ProductCard
+  ul.flex
+    li.flex(
+      v-for='(items, index) in Productstore',
+      :key='index')
+      CategoryCard(
+        :img='item.img'
+        :title='item.title')
 </template>
 
 <script lang="ts">
@@ -21,11 +22,12 @@ import { ProductCategories } from '@/types';
 })
 
 export default class Category extends Vue {
-  // Productstore: Array<ProductCategories> = [];
+  Productstore: Array<ProductCategories> = [];
 
-  // mounted(): void {
-  //   this.Productstore = ProductsStore.state.Categorieslist;
-  // }
+  mounted() {
+    this.Productstore = ProductsStore.state.Categorieslist;
+    console.log(this.Productstore);
+  }
 }
 </script>
 
@@ -37,14 +39,13 @@ table{
   margin-top: 30px;
   border: olive 2px;
   background-color: linear-gradient(#deeef5, #eff3e1); }
-  tbody{
+  ul{
+    width: 100%;
     }
-    th{
-       }
-      td{
-        height: 200px;
-        width: 200px;
-        border: 2px solid red;
-        margin: auto;
-        background-color: rgb(109, 60, 60); }
+    li{
+      height: 200px;
+      width: 200px;
+      border: 2px solid red;
+      margin: auto;
+      background-color: rgb(109, 60, 60); }
 </style>

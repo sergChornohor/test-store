@@ -1,27 +1,21 @@
 <template lang="pug">
 .card.flex.flex-center.flex-column
-    .img.flex.flex-center(
-      :style="{'background-image': 'url('+require('../../assets/img/' + img)+')'}")
+    .img(
+      :style="{'background-image': 'url('+require('../../assets/img/' +  img )+')'}")
     .description
-      h2 {{title}}
+      h2 {{ title }}
 </template>
 
 <script lang="ts">
 import { ProductCategories } from '@/types';
 import { Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 import Store from '@/store/index';
 
 export default class CategoryCard extends Vue {
-  img = '';
+  @Prop() img!: string
 
-  title = '';
-
-  // Store: Array<ProductCategories> = [];
-
-  // computed(): {
-  //   Categorieslist() {
-  //     return Store.state.Categorieslist
-  // };
+  @Prop() title!: string
 }
 
 </script>
@@ -39,7 +33,7 @@ export default class CategoryCard extends Vue {
   .img{
     width: 80%;
     height: 80%;
-    background-image: url('../../assets/img/camera.png');
+   // background-image: url('../../assets/img/camera.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;}

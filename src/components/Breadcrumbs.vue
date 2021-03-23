@@ -4,7 +4,7 @@
     li(v-for='(breadcrumb, idx) in breadcrumbList'
     :key='idx'
     @click='routeTo(idx)'
-    :class="{'linked': !!breadcrumb.link}") {{ breadcrumb.name }}
+    :class="{'linked': !!breadcrumb.link}") {{ breadcrumb.to }}
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ import { HeaderLinks, breadCrumbsListInterface } from '../types';
 // import { injectStrict } from '../utils/injections';
 
 export default class BreadCrumbs extends Vue {
-  private breadcrumbList: unknown = ''
+  private breadcrumbList: any = ''
 
   mounted() {
     this.updateList();
@@ -25,7 +25,7 @@ export default class BreadCrumbs extends Vue {
     this.updateList();
   }
 
-  // public updateList(): void {
+  // set updateList($route: any) {
   //   this.breadcrumbList = this.$route.meta.breadCrumbs;
   // }
 
@@ -34,7 +34,7 @@ export default class BreadCrumbs extends Vue {
   }
 
   routeTo(breadcrumbList: any, pRouteTo:any): void{
-    if (breadcrumbList[pRouteTo].link) this.$router.push(breadcrumbList[pRouteTo].link);
+    if (this.breadcrumbList[pRouteTo].link) this.$router.push(breadcrumbList[pRouteTo].link);
     console.log(breadcrumbList[pRouteTo].link);
   }
 }
