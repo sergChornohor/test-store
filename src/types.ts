@@ -9,6 +9,11 @@ export interface ProductCategories{
     title: string,
 }
 
+export interface breadCrumbsListInterface{
+    to: string,
+    text: string,
+}
+
 export interface Tasks{
     title: string,
     description: string,

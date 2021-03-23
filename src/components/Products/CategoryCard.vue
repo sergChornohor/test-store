@@ -9,18 +9,18 @@
 <script lang="ts">
 import { ProductCategories } from '@/types';
 import { Vue } from 'vue-class-component';
-import ProductsStore from '@/store/index';
+import Store from '@/store/index';
 
 export default class CategoryCard extends Vue {
   img = '';
 
   title = '';
 
-  // Productstore: Array<ProductCategories> = [];
+  // Store: Array<ProductCategories> = [];
 
   // computed(): {
   //   Categorieslist() {
-  //     return ProductsStore.state.Categorieslist
+  //     return Store.state.Categorieslist
   // };
 }
 

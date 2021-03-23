@@ -12,22 +12,45 @@
           .btn.buy-btn buy
           .btn.cart-btn add to cart
         .payment-delivery.flex.space-between.align-center
-          a delivery
-          a payment
+          .link(@click='enableDeliveryInfo=!enableDeliveryInfo') delivery
+          .link(@click='enablePayInfo=!enablePayInfo') payment
   .product-description.flex
     .product-text
       .product-text-head.flex.align-center
         h2 sdhjfgksdfj hjd
       .product-text-body
         p kalksjfskajksdfk;hasd;flexasdkalsddjshglsdklf jhdfgjklhdfg
+    DeliveryInfo(v-if='enableDeliveryInfo'
+      @close-window='enableDeliveryInfo = false')
+    PayInfo(v-if='enablePayInfo'
+      @close-window='enablePayInfo = false')
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
+import DeliveryInfo from '../components/Modal/DeliveryInfo.vue';
+import PayInfo from '../components/Modal/PayInfo.vue';
+
+@Options({
+  components: {
+    DeliveryInfo,
+    PayInfo,
+  },
+})
 
 export default class ProductView extends Vue {
+  enableDeliveryInfo = false
 
+  enablePayInfo = false
+
+  // methods: {
+  //   showDeliveryInfo() {
+  //     this.enableDeliveryInfo = true;
+  //     console.log(this.enableDeliveryInfo);
+  //   }
+  // }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -92,6 +115,13 @@ export default class ProductView extends Vue {
       .payment-delivery{
         height: 40px;
         padding: 10px 100px;}
+        .link{
+          height: 100%;
+          width: auto;
+          cursor: pointer;
+          text-align: center;}
+        .link:hover{
+          color: $dark-blue-color;}
   .product-description{
     width: 100%;
     height: auto;}

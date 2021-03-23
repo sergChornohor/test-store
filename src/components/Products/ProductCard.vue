@@ -1,5 +1,5 @@
 <template lang="pug">
-.card.flex.flex-center.flex-column
+.card.flex.flex-center.flex-column(@click='$router.push({ name: "Product"})')
     .img.flex.flex-center
     .description
       h2 NAMEl asjd

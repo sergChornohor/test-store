@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 // import { Vue } from 'vue-class-component';
 
-const ProductsStore = new Vuex.Store({
+const Store = new Vuex.Store({
   state: {
     Categorieslist: [
       {
@@ -30,10 +30,22 @@ const ProductsStore = new Vuex.Store({
         title: 'PNGWAVE',
       },
     ],
+    breadListState: [
+      { name: 'Home', path: '/' },
+    ],
   },
   getters: {
     CatList: (state) => state.Categorieslist,
+    // breadListState() {
+    //   return JSON.parse(sessionStorage.getItem('breadListStorage')) || [];
+    // },
   },
+  // mutations: {
+  //   breadListMutations(getters, list) {
+  //     getters.breadListState = list;
+  //     sessionStorage.setItem('breadListStorage', list);
+  //   },
+  // },
 });
 
-export default ProductsStore;
+export default Store;

@@ -8,7 +8,6 @@ import { Options, Vue } from 'vue-class-component';
 import Home from './views/Home.vue';
 
 @Options({
-  name: 'app',
   components: {
     Home,
   },
