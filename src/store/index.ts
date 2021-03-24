@@ -36,16 +36,7 @@ const Store = new Vuex.Store({
   },
   getters: {
     CatList: (state) => state.Categorieslist,
-    // breadListState() {
-    //   return JSON.parse(sessionStorage.getItem('breadListStorage')) || [];
-    // },
   },
-  // mutations: {
-  //   breadListMutations(getters, list) {
-  //     getters.breadListState = list;
-  //     sessionStorage.setItem('breadListStorage', list);
-  //   },
-  // },
 });
 
 export default Store;

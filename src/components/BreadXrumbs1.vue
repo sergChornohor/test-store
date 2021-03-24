@@ -31,7 +31,7 @@ export default class BreadXrumbs1 extends Vue {
   @Watch('$route')
     onRouteChange(e:any) {
       this.getBreadcrumb();
-    }  
+    }
 
 </script>
 

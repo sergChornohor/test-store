@@ -24,9 +24,9 @@ export default class CategoryCard extends Vue {
 @import '../../assets/style.scss';
 
 .card{
-  width: 150px;
-  height: 150px;
-  margin: 25px }
+  width: 190px;
+  height: 190px;
+  margin: 5px; }
 .card:hover{
   background-color: #fff;
 }

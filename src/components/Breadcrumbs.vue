@@ -4,7 +4,7 @@
     li(v-for='(breadcrumb, idx) in breadcrumbList'
     :key='idx'
     @click='routeTo(idx)'
-    :class="{'linked': !!breadcrumb.link}") {{ breadcrumb.to }}
+    :class="{'linked': !!breadcrumb.to}") {{ breadcrumb.to }}
 </template>
 
 <script lang="ts">
@@ -13,7 +13,7 @@ import { Watch } from 'vue-property-decorator';
 import { HeaderLinks, breadCrumbsListInterface } from '../types';
 
 export default class BreadCrumbs extends Vue {
-  private breadcrumbList: any = [];
+  breadcrumbList: any = [];
 
   mounted() {
     this.updateList();
@@ -28,9 +28,8 @@ export default class BreadCrumbs extends Vue {
     this.breadcrumbList = this.$route.meta.breadCrumbs;
   }
 
-  routeTo(breadcrumbList: any, pRouteTo:any): void{
-    if (this.breadcrumbList[pRouteTo].link) this.$router.push(breadcrumbList[pRouteTo].link);
-    console.log(breadcrumbList[pRouteTo].link);
+  routeTo(index:number): void{
+    if (this.breadcrumbList[index].to) this.$router.push(this.breadcrumbList[index].to);
   }
 }
 </script>
