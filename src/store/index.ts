@@ -18,7 +18,7 @@ const Store = new Vuex.Store({
         title: 'GLOVES',
       },
       {
-        img: 'smart watch.png',
+        img: 'smartWatch.png',
         title: 'SMART WATCH',
       },
       {

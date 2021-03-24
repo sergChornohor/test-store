@@ -1,5 +1,5 @@
 <template lang="pug">
-.content-container.flex.justify-center
+.content-container.flex.justify-center.bggradient
   router-view
 </template>
 

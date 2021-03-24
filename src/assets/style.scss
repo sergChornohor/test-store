@@ -107,6 +107,10 @@ $breakpoints: (
   align-items: $value;
 }
 
+@mixin bgradient{
+  background: linear-gradient(#deeef5, #eff3e1);
+}
+
 
 // STYLE
 
@@ -147,6 +151,9 @@ font-weight: 400;
   @include flexbox();
   flex-direction: column;
 }
+.bggradient{
+  @include bgradient();  
+}
   .padding-30px{
   padding: 30px 20px 20px 30px;
 }
@@ -165,7 +172,9 @@ height: 100vh;
 .content-container{
 @include align-items(flex-start);
 width: 100%;
+max-width: 1170px;
 overflow-y: scroll;
+overflow-x: hidden;
 height: -webkit-fill-available;
 background-color: $bg-color1;
 }

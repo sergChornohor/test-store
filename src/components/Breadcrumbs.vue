@@ -11,10 +11,9 @@
 import { Vue } from 'vue-class-component';
 import { Watch } from 'vue-property-decorator';
 import { HeaderLinks, breadCrumbsListInterface } from '../types';
-// import { injectStrict } from '../utils/injections';
 
 export default class BreadCrumbs extends Vue {
-  private breadcrumbList: any = ''
+  private breadcrumbList: any = [];
 
   mounted() {
     this.updateList();
@@ -24,10 +23,6 @@ export default class BreadCrumbs extends Vue {
   onRouteChange(newValue:any) {
     this.updateList();
   }
-
-  // set updateList($route: any) {
-  //   this.breadcrumbList = this.$route.meta.breadCrumbs;
-  // }
 
   updateList(): any {
     this.breadcrumbList = this.$route.meta.breadCrumbs;
