@@ -8,7 +8,7 @@
       .product-buying-info
         .product-price
           h2 234
-        .buy-form.flex.space-between.align-center
+        .buy-form.flex.align-center.space-between
           .btn.buy-btn buy
           .btn.cart-btn add to cart
         .payment-delivery.flex.space-between.align-center
@@ -90,28 +90,6 @@ export default class ProductView extends Vue {
         .product-price h2{
           font-size: 2em;
           color: $green-color;}
-      .buy-form{
-        width: 100%;
-        height: 120px;
-        padding: 50px;}
-        .buy-btn{
-          box-shadow:inset 0px 1px 0px 0px #caefab;
-          background:linear-gradient(to bottom, $buy-btn-green 5%, $buy-btn-green1 100%);
-          background-color:$buy-btn-green;
-          border:1px solid $buy-btn-brdr;
-          color:$white-color;}
-        .buy-btn:hover {
-          background:linear-gradient(to bottom, $buy-btn-green1 5%, $buy-btn-green 100%);
-          background-color:$buy-btn-green1; }
-        .cart-btn{
-          box-shadow:inset 0px 1px 0px 0px #caefab;
-          background:linear-gradient(to bottom, $cart-btn-red 5%, $cart-btn-red1 100%);
-          background-color:$cart-btn-red;
-          border:1px solid $cart-btn-brdr;
-          color:$white-color;}
-        .cart-btn:hover {
-          background:linear-gradient(to bottom, $cart-btn-red1 5%, $cart-btn-red 100%);
-          background-color:$cart-btn-red1; }
       .payment-delivery{
         height: 40px;
         padding: 10px 100px;}

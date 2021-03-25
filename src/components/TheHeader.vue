@@ -1,5 +1,5 @@
 <template lang="pug">
-.header-container.space-between.flex-column
+.header-container.flex.space-between.align-center
   menu.flex
     li.flex.align-center(
       v-for='link in links',
@@ -8,7 +8,9 @@
         :to='link.url',
         :exact='link.exact',
         active-class='active') {{link.title}}
-  BreadCrumbs
+  .cart-form.flex.justify-end
+    .index 5
+  //- BreadCrumbs
 </template>
 
 <script lang="ts">
@@ -58,4 +60,26 @@ a{
         color: $yellow-color; }
       a:hover, a:active{
         color: $white-color; }
+  .cart-form{
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/img/Buy-icon-yellow.png');
+    background-size: contain;
+    margin-right: 40px;}
+    .index{
+      width: 13px;
+      height: 13px;
+      text-align: center;
+      font-size: 17px;
+      color: $cart-btn-red;
+    }
+  .cart-form:hover{
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/img/Buy-icon-red.png');
+    background-size: contain;
+    margin-right: 40px; }
+    .cart-form:hover .index{
+      color: $yellow-color;
+    }
 </style>

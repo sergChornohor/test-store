@@ -1,12 +1,16 @@
 <template lang="pug">
 .container
-  ProductCard
+  ul.flex
+      li.flex(
+        v-for='(item, index) in Productstore',
+        :key='index')
+        ProductCard
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
-import ProductsStore from '@/store/index';
+import Store from '@/store/index';
 import { ProductCategories } from '@/types';
 
 @Options({
@@ -16,11 +20,11 @@ import { ProductCategories } from '@/types';
 })
 
 export default class Products extends Vue {
-  // Productstore: Array<ProductCategories> = [];
+  Productstore: Array<ProductCategories> = [];
 
-  // mounted(): void {
-  //   this.Productstore = ProductsStore.state.Categorieslist;
-  // }
+  mounted() {
+    this.Productstore = Store.state.Categorieslist;
+  }
 }
 </script>
 
@@ -33,13 +37,12 @@ table{
   margin-top: 30px;
   border: olive 2px;
   background-color: linear-gradient(#deeef5, #eff3e1); }
-  tbody{
-    }
-    th{
-      }
-      td{
-        height: 300px;
-        border: 2px solid red;
-        margin: auto;
-        background-color: rgb(109, 60, 60); }
+  ul{
+    width: 100%;
+    flex-wrap: wrap;}
+    li{
+      height: 300px;
+      width: 300px;
+      border: 2px solid red;
+      margin: 15px;}
 </style>

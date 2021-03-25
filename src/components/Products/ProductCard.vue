@@ -1,11 +1,15 @@
 <template lang="pug">
 .card.flex.flex-center.flex-column(@click='$router.push({ name: "Product"})')
     .img.flex.flex-center
-    .description
-      h2 NAMEl asjd
-      // p fjkldghadfglk jkahgklldflg kajdfgjkldfg kajdfgjkdfg kjadfgklsdflkg
-    .price
-      h1 456 uah
+    .description.flex
+      .product-name
+        h2 NAMEl asjd
+        // p fjkldghadfglk jkahgklldflg kajdfgjkldfg kajdfgjkdfg kjadfgklsdflkg
+      .price
+        h1 456 uah
+    .buy-form.product-cart-buy-form.flex.space-between.align-center
+      .btn.buy-btn buy
+      .btn.cart-btn add to cart
 </template>
 
 <script lang="ts">
@@ -34,18 +38,27 @@ export default class ProductCard extends Vue {
     background-repeat: no-repeat;
     background-position: center;}
   .description{
-    width: 80%;
+    width: 90%;
     height: 15%;}
-    h2{
-      font-size: 1.2em;
-      color: $black-color;}
-    .description p{
-      font-size: 1.5em;
-      color: $black-color;}
-  .price{
-    width: 80%;
-    height: 15%;}
-    .price h1{
-      font-size: 1.7em;
-      color: $green-color;}
+    .product-name{
+      width: 60%;
+      height: inherit;
+    }
+      .product-name h2{
+        font-size: 1.2em;
+        color: $black-color;}
+    .price{
+      width: 40%;}
+      .price h1{
+        font-size: 1.5em;
+        color: $green-color;}
+  .product-cart-buy-form{
+    width: 100%;
+    height: 15%;
+    padding: 1% 3%;}
+    .btn {
+      width: 47%;
+      height: 100%;
+      padding: 6px;
+      font-size:15px;}
 </style>

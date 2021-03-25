@@ -1,5 +1,5 @@
 <template lang='pug'>
-.wrapper.flex.justify-center.flex-column
+.wrapper.flex.flex-column
   TheHeader
   TheContent
   TheBottom
