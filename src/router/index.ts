@@ -2,6 +2,7 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 import Category from '../views/Category.vue';
 import Products from '../views/Products.vue';
 import ProductView from '../views/ProductView.vue';
+import About from '../views/About.vue';
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     name: 'Product',
     component: ProductView,
     meta: { breadCrumbs: [{ to: '/products/product', text: 'product' }] },
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+    meta: { breadCrumbs: [{ to: '/about', text: 'about' }] },
   },
 ];
 

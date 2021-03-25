@@ -6,7 +6,8 @@ table.table-grid
       :key='index')
       CategoryCard(
         :img='item.img'
-        :title='item.title')
+        :title='item.title'
+        @click='$router.push({ name: "Products"})')
 </template>
 
 <script lang="ts">
@@ -47,7 +48,8 @@ table{
     li{
       height: 200px;
       width: 200px;
-      border: 2px solid red;
+      // border: 2px solid red;
       margin: 15px;
-      background-color: rgb(109, 60, 60); }
+      border-radius: 8px;
+      background-color: $blue-color1; }
 </style>

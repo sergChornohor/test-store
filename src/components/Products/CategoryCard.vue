@@ -1,8 +1,8 @@
 <template lang="pug">
-.card.flex.flex-center.flex-column
+.card.flex.flex-center.flex-column.ani-transition
     .img(
       :style="{'background-image': 'url('+require('../../assets/img/' +  img )+')'}")
-    .description
+    .description.flex.flex-center
       h2 {{ title }}
 </template>
 
@@ -26,22 +26,24 @@ export default class CategoryCard extends Vue {
 .card{
   width: 190px;
   height: 190px;
-  margin: 5px; }
+  margin: 5px;
+  border-radius: 8px; }
 .card:hover{
-  background-color: #fff;
+  background-color: $blue-color2;
+  transform: scale(1.1);
 }
   .img{
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
    // background-image: url('../../assets/img/camera.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;}
   .description{
     width: 80%;
-    height: 20%;}
+    height: 30%;}
     h2{
       font-size: 25px;
-      color: $black-color;}
+      color: $dark-blue-color;}
 
 </style>

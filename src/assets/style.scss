@@ -1,9 +1,12 @@
 
 // variables
 $bg-color: #EEE5E9;
+$bg-color-inv: #eee5e991;
 $bg-color1: #FAF9F9;
 $yellow-color: #FFC200;
 $blue-color: #046C94;
+$blue-color1:rgba(4, 107, 148, 0.062);
+$blue-color2:rgba(4, 107, 148, 0.199);
 $white-color: #F7FFF6;
 $green-color: #6DA34D;
 $dark-blue-color: #0A122A;
@@ -130,6 +133,12 @@ overflow-x: hidden;
 overflow-y: hidden;
 font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 font-weight: 400;
+}
+.ani-transition{
+  transition: 0.3s;
+}
+.hover-zoom{
+  transform: scale(0.1);
 }
 .flex{
   @include flexbox();

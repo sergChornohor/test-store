@@ -37,7 +37,8 @@
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-gallery-slideshow": "^1.5.2"
   },
   "eslintConfig": {
     "root": true,

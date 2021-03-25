@@ -29,13 +29,14 @@ export default class PayInfo extends Vue {
   left: 0px;
   right: 0px;
   top: 0px;
-  bottom: 0px;}
+  bottom: 0px;
+  background: $blue-color2;}
   .modal-content-wrapper{
     width: 40%;
     display: flex;
     flex-direction: column;
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: $bg-color1;
     padding-bottom: 15px;
     opacity: 1;

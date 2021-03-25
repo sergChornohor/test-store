@@ -43,6 +43,6 @@ table{
     li{
       height: 300px;
       width: 300px;
-      border: 2px solid red;
+      border-radius: 10px;
       margin: 15px;}
 </style>

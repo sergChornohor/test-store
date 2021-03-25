@@ -1,22 +1,20 @@
 <template lang="pug">
-.card.flex.flex-center.flex-column(@click='$router.push({ name: "Product"})')
-    .img.flex.flex-center
+.card.flex.flex-center.flex-column.ani-transition
+    .img.flex.flex-center(@click='$router.push({ name: "Product"})')
     .description.flex
       .product-name
         h2 NAMEl asjd
-        // p fjkldghadfglk jkahgklldflg kajdfgjkldfg kajdfgjkdfg kjadfgklsdflkg
       .price
         h1 456 uah
     .buy-form.product-cart-buy-form.flex.space-between.align-center
       .btn.buy-btn buy
-      .btn.cart-btn add to cart
+      .btn.cart-btn(@click="$parent.$emit('add-to-cart')") add to cart
 </template>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 
 export default class ProductCard extends Vue {
-
 }
 </script>
 
@@ -26,9 +24,11 @@ export default class ProductCard extends Vue {
 .card{
   width: 250px;
   height: 250px;
-  margin: 25px }
+  margin: 25px;
+  border-radius: 10px; }
 .card:hover{
-  background-color: rgb(160, 119, 119);
+  transform: scale(1.1);
+  background-color: $blue-color1;
 }
   .img{
     width: 70%;

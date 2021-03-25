@@ -5,14 +5,13 @@ div#app
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Home from './views/Home.vue';
+import Home from './Layout/Home.vue';
 
 @Options({
   components: {
     Home,
   },
 })
-// import { Component, Prop } from 'vue-class-component';
 export default class App extends Vue {}
 </script>
 

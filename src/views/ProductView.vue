@@ -6,8 +6,9 @@
     .product-info-container.flex
       .product-photo
       .product-buying-info
-        .product-price
-          h2 234
+        .product-price.flex.flex-center
+          p price:
+          h2 {{ price }} $
         .buy-form.flex.align-center.space-between
           .btn.buy-btn buy
           .btn.cart-btn add to cart
@@ -28,6 +29,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 import DeliveryInfo from '../components/Modal/DeliveryInfo.vue';
 import PayInfo from '../components/Modal/PayInfo.vue';
 
@@ -39,16 +41,11 @@ import PayInfo from '../components/Modal/PayInfo.vue';
 })
 
 export default class ProductView extends Vue {
+  @Prop() price = 100;
+
   enableDeliveryInfo = false
 
   enablePayInfo = false
-
-  // methods: {
-  //   showDeliveryInfo() {
-  //     this.enableDeliveryInfo = true;
-  //     console.log(this.enableDeliveryInfo);
-  //   }
-  // }
 }
 
 </script>
@@ -87,8 +84,12 @@ export default class ProductView extends Vue {
         width: 100%;
         height: 70px;
         padding: 5px;}
+        .product-price p{
+          font-size: 1.3em;
+          color: $black-color;
+          margin-right: 10px;}
         .product-price h2{
-          font-size: 2em;
+          font-size: 2.5em;
           color: $green-color;}
       .payment-delivery{
         height: 40px;

@@ -6,17 +6,16 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Category from '../views/Category.vue';
 import BreadCrumbs from './Breadcrumbs.vue';
 
 @Options({
   components: {
-    Category,
     BreadCrumbs,
   },
 })
 
-export default class TheContent extends Vue {}
+export default class TheContent extends Vue {
+}
 </script>
 
 <style scoped lang="scss">
