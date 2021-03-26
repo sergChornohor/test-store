@@ -12,7 +12,6 @@ table.table-grid
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
 import CategoryCard from '@/components/Products/CategoryCard.vue';
 import Store from '@/store/index';
 import { ProductCategories } from '@/types';

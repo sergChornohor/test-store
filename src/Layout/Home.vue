@@ -4,14 +4,14 @@
     :index ='cartIndex'
   )
   TheContent(
-    @add-to-cart='changeCartIndex()'
+    @addCart='changeCartIndex()'
   )
   TheBottom
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Component } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import TheHeader from '@/components/TheHeader.vue';
 import TheContent from '@/components/TheContent.vue';
 import TheBottom from '@/components/TheBottom.vue';
