@@ -10,15 +10,15 @@
         active-class='active') {{link.title}}
   .cart-form.flex.justify-end.ani-transition
     .index {{ index }}
-  //- BreadCrumbs
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Watch, Prop } from 'vue-property-decorator';
 import { HeaderLinks, breadCrumbsListInterface } from '../types';
+import Store from '../store';
 import BreadCrumbs from './Breadcrumbs.vue';
-// import { injectStrict } from '../utils/injections';
+
  @Options({
    components: {
      BreadCrumbs,

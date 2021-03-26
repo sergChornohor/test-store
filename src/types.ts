@@ -13,16 +13,3 @@ export interface breadCrumbsListInterface{
     to: string,
     text: string,
 }
-
-export interface Tasks{
-    title: string,
-    description: string,
-    exTime: string,
-    status: string,
-}
-
-// export enum Status{
-//     ToDo = 'To Do',
-//     InProgress = 'In Progress',
-//     Done = 'Done'
-// }

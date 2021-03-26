@@ -16,7 +16,7 @@
 import { Vue } from 'vue-class-component';
 
 export default class DeliveryInfo extends Vue {
-
+  emits = ['close-window'];
 }
 </script>
 

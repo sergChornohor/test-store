@@ -8,16 +8,15 @@
         h1 456 uah
     .buy-form.product-cart-buy-form.flex.space-between.align-center
       .btn.buy-btn buy
-      .btn.cart-btn(@click="$emit('addCart')") add to cart
+      .btn.cart-btn(@click='changeCartIndex') add to cart
 </template>
 
 <script lang="ts">
-import { Emit } from 'vue-property-decorator';
 import { Vue } from 'vue-class-component';
-// import { emits } from 'vue-property-decorator';
+import { mapState, mapMutations } from 'vuex';
+import Store from '../../store';
 
 export default class ProductCard extends Vue {
-  emits = ['addCart'];
 }
 </script>
 

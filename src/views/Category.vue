@@ -2,7 +2,7 @@
 table.table-grid
   ul.flex
     li.flex(
-      v-for='(item, index) in Productstore',
+      v-for='(item, index) in getCatList',
       :key='index')
       CategoryCard(
         :img='item.img'
@@ -12,6 +12,7 @@ table.table-grid
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Action, Getter } from 'vuex-class';
 import CategoryCard from '@/components/Products/CategoryCard.vue';
 import Store from '@/store/index';
 import { ProductCategories } from '@/types';
@@ -23,11 +24,7 @@ import { ProductCategories } from '@/types';
 })
 
 export default class Category extends Vue {
-  Productstore: Array<ProductCategories> = [];
-
-  mounted() {
-    this.Productstore = Store.state.Categorieslist;
-  }
+  @Getter getCatList!: ProductCategories[];
 }
 </script>
 

@@ -2,13 +2,14 @@
 .container
   ul.flex
       li.flex(
-        v-for='(item, index) in Productstore',
+        v-for='(item, index) in getCatList',
         :key='index')
         ProductCard
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Action, Getter } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import Store from '@/store/index';
 import { ProductCategories } from '@/types';
@@ -20,12 +21,9 @@ import { ProductCategories } from '@/types';
 })
 
 export default class Products extends Vue {
-  Productstore: Array<ProductCategories> = [];
-
-  mounted() {
-    this.Productstore = Store.state.Categorieslist;
-  }
+  @Getter getCatList!: ProductCategories[];
 }
+
 </script>
 
 <style scoped lang="scss">
