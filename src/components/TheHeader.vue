@@ -9,15 +9,15 @@
         :exact='link.exact',
         active-class='active') {{link.title}}
   .cart-form.flex.justify-end.ani-transition
-    .index {{ index }}
+    .index {{ getCartIndex }}
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Watch, Prop } from 'vue-property-decorator';
-import { HeaderLinks, breadCrumbsListInterface } from '../types';
-import Store from '../store';
+import { Getter, Mutation } from 'vuex-class';
 import BreadCrumbs from './Breadcrumbs.vue';
+import { HeaderLinks, breadCrumbsListInterface } from '../types';
 
  @Options({
    components: {
@@ -26,14 +26,14 @@ import BreadCrumbs from './Breadcrumbs.vue';
  })
 
 export default class TheHeader extends Vue {
-  @Prop() index = 0;
+  @Getter getCartIndex!: number;
 
   private links: Array<HeaderLinks> = [
     { title: 'Home', url: '/', exact: true },
     { title: 'Category', url: '/category', exact: false },
     { title: 'Products', url: '/products', exact: false },
     { title: 'About', url: '/about', exact: false },
-  ]
+  ];
 }
 </script>
 

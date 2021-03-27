@@ -13,3 +13,13 @@ export interface breadCrumbsListInterface{
     to: string,
     text: string,
 }
+
+export interface ProductsInterface{
+    name: string,
+    id: number,
+    price: number,
+    quantity: number,
+    category: string,
+    discription: string,
+    image: string,
+}

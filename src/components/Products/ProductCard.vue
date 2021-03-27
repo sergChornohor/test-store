@@ -13,10 +13,11 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { mapState, mapMutations } from 'vuex';
+import { Mutation } from 'vuex-class';
 import Store from '../../store';
 
 export default class ProductCard extends Vue {
+  @Mutation changeCartIndex: any;
 }
 </script>
 

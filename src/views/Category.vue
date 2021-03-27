@@ -14,7 +14,6 @@ table.table-grid
 import { Options, Vue } from 'vue-class-component';
 import { Action, Getter } from 'vuex-class';
 import CategoryCard from '@/components/Products/CategoryCard.vue';
-import Store from '@/store/index';
 import { ProductCategories } from '@/types';
 
 @Options({

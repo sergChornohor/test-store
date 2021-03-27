@@ -3,13 +3,14 @@ import Category from '../views/Category.vue';
 import Products from '../views/Products.vue';
 import ProductView from '../views/ProductView.vue';
 import About from '../views/About.vue';
+import MainePage from '../views/MainePage.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Category,
-    meta: { breadCrumbs: [{ to: '/', text: 'categories' }] },
+    component: MainePage,
+    meta: { breadCrumbs: [{ to: '/', text: '/' }] },
   },
   {
     path: '/category',
