@@ -8,7 +8,7 @@
         :to='link.url',
         :exact='link.exact',
         active-class='active') {{link.title}}
-  .cart-form.flex.justify-end.ani-transition
+  .cart-form.flex.justify-end.ani-transition(@click='$router.push({ name: "Cart"})')
     .index {{ getCartIndex }}
 </template>
 

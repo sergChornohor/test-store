@@ -12,6 +12,7 @@ table.table-grid
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import CategoryCard from '@/components/Products/CategoryCard.vue';
 import { ProductCategories } from '@/types';
@@ -24,6 +25,8 @@ import { ProductCategories } from '@/types';
 
 export default class Category extends Vue {
   @Getter getCatList!: ProductCategories[];
+
+  @Getter getCatListGadgets!: ProductCategories[];
 }
 </script>
 

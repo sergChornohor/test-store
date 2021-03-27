@@ -7,6 +7,7 @@ export interface HeaderLinks{
 export interface ProductCategories{
     img: string,
     title: string,
+    cat: string,
 }
 
 export interface breadCrumbsListInterface{

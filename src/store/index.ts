@@ -11,26 +11,32 @@ class newStore extends VuexModule {
     {
       img: 'camera.png',
       title: 'CAMERA',
+      cat: 'gadgets',
     },
     {
       img: 'mobile.png',
       title: 'MOBILE',
+      cat: 'gadgets',
     },
     {
       img: 'gloves.png',
       title: 'GLOVES',
+      cat: 'goods',
     },
     {
       img: 'smartWatch.png',
       title: 'SMART WATCH',
+      cat: 'gadgets',
     },
     {
       img: 'backpack.png',
       title: 'BACKPACK',
+      cat: 'goods',
     },
     {
       img: 'pngwave.png',
       title: 'PNGWAVE',
+      cat: 'goods',
     },
   ];
 
@@ -59,9 +65,13 @@ class newStore extends VuexModule {
     { name: 'Home', path: '/' },
   ];
 
+  CategorieslistTemp = [];
+
   cartIndex = 0;
 
-  get getCatList(): ProductCategories[] {
+  categIndex = 0;
+
+  get getCatListFull(): ProductCategories[] {
     return this.Categorieslist;
   }
 
@@ -73,8 +83,37 @@ class newStore extends VuexModule {
     return this.products;
   }
 
+  get getCatListGadgets(): any {
+    const result: { img: string; title: string; cat: string; }[] = [];
+    this.Categorieslist.forEach((cats) => {
+      if (cats.cat === 'gadgets') (result.push(cats));
+    });
+    return result;
+  }
+
+  get getCatListGoods(): any {
+    const result: { img: string; title: string; cat: string; }[] = [];
+    this.Categorieslist.forEach((cats) => {
+      if (cats.cat === 'goods') (result.push(cats));
+    });
+    return result;
+  }
+
+  get getCatList(): any {
+    let result: { img: string; title: string; cat: string; }[] = [];
+    if (this.categIndex === 1) (result = this.getCatListGadgets);
+    else if (this.categIndex === 2) (result = this.getCatListGoods);
+    else (result = this.Categorieslist);
+    return result;
+  }
+
   @mutation changeCartIndex() {
     this.cartIndex += 1;
+  }
+
+  @mutation changecategIndexforGadgets() {
+    console.log('12341234');
+    this.categIndex = 1;
   }
 }
 const store = new Vuex.Store({

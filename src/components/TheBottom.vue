@@ -20,7 +20,7 @@ export default class TheBottom extends Vue {
 .bottom-container{
   width: 100%;
   height: 40px;
-  background-color: $yellow-color;}
+  background-color: $bg-color1;}
   .bottom-info{
     height: 25px;}
   .bottom-copyrights{
