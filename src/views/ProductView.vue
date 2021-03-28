@@ -2,28 +2,29 @@
 .product.flex.justify-content.flex-column
   .product-maine-info.flex.flex-column
     .product-name
-      h1 {{ getProducts.name }}
+      h1 {{ getProducts[pr].name }}
     .product-info-container.flex
-      .product-photo
+      .product-photo(
+        :style="{'background-image':'url('+require('../assets/img/'+getProducts[pr].image)+')'}")
       .product-buying-info
         .product-price.flex.flex-center
           p price:
-          h2 {{ getProducts.price }} $
+          h2 {{ getProducts[pr].price }} $
         .product-quantity.flex.flex-start
           p quantity:
-          h2 {{ getProducts.quantity }}
+          h2 {{ getProducts[pr].quantity }}
         .buy-form.flex.align-center.space-between
-          .btn.buy-btn buy
-          .btn.cart-btn add to cart
+          .btn.buy-btn(@click='$router.push({ name: "Cart"})') buy
+          .btn.cart-btn(@click='changeCartIndex') add to cart
         .payment-delivery.flex.space-between.align-center
           .link(@click='enableDeliveryInfo=!enableDeliveryInfo') delivery
           .link(@click='enablePayInfo=!enablePayInfo') payment
   .product-description.flex
     .product-text
       .product-text-head.flex.align-center
-        h2 {{ getProducts.name }} description
+        h2 {{ getProducts[pr].name }} description
       .product-text-body
-        p {{ getProducts.description }}
+        p {{ getProducts[pr].description }}
     DeliveryInfo(v-if='enableDeliveryInfo'
       @close-window='enableDeliveryInfo = false')
     PayInfo(v-if='enablePayInfo'
@@ -31,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Getter } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import DeliveryInfo from '../components/Modal/DeliveryInfo.vue';
@@ -46,7 +47,9 @@ import { ProductsInterface } from '../types';
 })
 
 export default class ProductView extends Vue {
-  @Prop() price = 100;
+  @Mutation changeCartIndex: any;
+
+  pr = 0;
 
   enableDeliveryInfo = false;
 

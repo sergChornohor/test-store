@@ -1,9 +1,9 @@
 <template lang="pug">
 .container.flex
   .gadgets.ani-transition.flex.flex-center
-    .title-container.flex.flex-center(@click='changeCat()') Gadgets
+    .title-container.flex.flex-center(@click='goToGadgets()') Gadgets
   .goods.ani-transition.flex.flex-center
-    .title-container.flex.flex-center(@click='$router.push({ name: "Category"})') Goods
+    .title-container.flex.flex-center(@click='goToGoods()') Goods
 </template>
 
 <script lang="ts">
@@ -13,19 +13,28 @@ import { Options, Vue } from 'vue-class-component';
 export default class MainePage extends Vue {
   @Getter getCatListGadgets: any;
 
-  @Mutation changecategIndexforGadgets: any;
+  @Mutation changecategFlagforGadgets: any;
+
+  @Mutation changecategFlagforGoods: any;
 
   goToGadgets() {
-    return (this.pushRouteCat() && this.changeCat());
+    return (this.pushRouteCat() && this.changeCatGadgents());
   }
 
   pushRouteCat() {
     return this.$router.push({ name: 'Category' });
   }
 
-  changeCat() {
-    // eslint-disable-next-line
-    this.changecategIndexforGadgets;
+  changeCatGadgents() {
+    return this.changecategFlagforGadgets();
+  }
+
+  changeCatGoods() {
+    return this.changecategFlagforGoods();
+  }
+
+  goToGoods() {
+    return (this.pushRouteCat() && this.changeCatGoods());
   }
 }
 </script>

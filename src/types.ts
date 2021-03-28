@@ -21,6 +21,6 @@ export interface ProductsInterface{
     price: number,
     quantity: number,
     category: string,
-    discription: string,
+    description: string,
     image: string,
 }

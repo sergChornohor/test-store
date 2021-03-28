@@ -5,6 +5,7 @@
       v-for='link in links',
       :key='link.url')
       router-link.ani-transition(
+        @click='resetCategFlag'
         :to='link.url',
         :exact='link.exact',
         active-class='active') {{link.title}}
@@ -27,6 +28,8 @@ import { HeaderLinks, breadCrumbsListInterface } from '../types';
 
 export default class TheHeader extends Vue {
   @Getter getCartIndex!: number;
+
+  @Mutation resetCategFlag: any;
 
   private links: Array<HeaderLinks> = [
     { title: 'Home', url: '/', exact: true },

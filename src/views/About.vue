@@ -1,7 +1,7 @@
 <template lang="pug">
 .container.flex.flex-center.flex-column
   .store-name
-    h1 AFGH JHLJHLJH
+    h1 VUE3 Test_Store
   .some-text
     p {{text}}
 </template>
@@ -11,7 +11,7 @@ import { Vue } from 'vue-class-component';
 
 export default class Category extends Vue {
   text =
-  'sdfghfkihgd fgjkdg fbdf  gbkbnkgnfbdfngb dfhghdfg df fd gdfgh dfgh dfg f dfghdfhd'
+  'Some usefull information for customers. Something like company hystory or benefits of being this company customer'
 }
 </script>
 
@@ -32,6 +32,7 @@ export default class Category extends Vue {
   width: 70%;
   height: 500px;
   p{
+    text-align: left;
     font-size: 1.6em; }
   }
 </style>

@@ -42,12 +42,12 @@ class newStore extends VuexModule {
 
   products = [
     {
-      name: 'Crewneck T-Shirt',
+      name: 'Skirt',
       id: 53362,
       price: 95,
       quantity: 10,
       category: 'CAMERA',
-      discription: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
+      description: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
       image: 'camera.png',
     },
     {
@@ -56,7 +56,7 @@ class newStore extends VuexModule {
       price: 45,
       quantity: 2,
       category: 'BACKPACK',
-      discription: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
+      description: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
       image: 'backpack.png',
     },
   ];
@@ -69,7 +69,7 @@ class newStore extends VuexModule {
 
   cartIndex = 0;
 
-  categIndex = 0;
+  categFlag = '';
 
   get getCatListFull(): ProductCategories[] {
     return this.Categorieslist;
@@ -101,8 +101,8 @@ class newStore extends VuexModule {
 
   get getCatList(): any {
     let result: { img: string; title: string; cat: string; }[] = [];
-    if (this.categIndex === 1) (result = this.getCatListGadgets);
-    else if (this.categIndex === 2) (result = this.getCatListGoods);
+    if (this.categFlag === 'gadgets') (result = this.getCatListGadgets);
+    else if (this.categFlag === 'goods') (result = this.getCatListGoods);
     else (result = this.Categorieslist);
     return result;
   }
@@ -111,13 +111,24 @@ class newStore extends VuexModule {
     this.cartIndex += 1;
   }
 
-  @mutation changecategIndexforGadgets() {
-    console.log('12341234');
-    this.categIndex = 1;
+  @mutation clearCartIndex() {
+    this.cartIndex = 0;
+  }
+
+  @mutation changecategFlagforGadgets() {
+    this.categFlag = 'gadgets';
+  }
+
+  @mutation changecategFlagforGoods() {
+    this.categFlag = 'goods';
+  }
+
+  @mutation resetCategFlag() {
+    this.categFlag = '';
   }
 
   // @action goToGadgets(context:any) {
-  //   context.commit('changecategIndexforGadgets');
+  //   this.context.commit('changecategFlagforGadgets');
   // }
 }
 const store = new Vuex.Store({

@@ -19,27 +19,30 @@
           select
             option(value='Novaposhta') Nova Poshta
             option(value='MistExpress') Mist Express
-      .cart-product
-        ProductCard
-        .cart-total-price {{ totalPrice }} 467 $
+      .cart-product.flex.flex-column.space-between
+        CartProduct
+        .cart-total-price Total Price: {{ totalPrice }} $
     .cart-confirm.flex.space-between
       .btn.buy-btn Comfirm
-      .btn.cart-btn Clear
+      .btn.cart-btn(@click='clearCartIndex') Clear
 </template>
 
 <script lang="ts">
+import { Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
-import ProductCard from '../components/Products/ProductCard.vue';
+import ProductCard from '@/components/Products/ProductCard.vue';
+import CartProduct from '../components/Products/CartProduct.vue';
 // import Equal from 'equal-vue';
 
 @Options({
   components: {
+    CartProduct,
     ProductCard,
   },
 })
 
 export default class CartView extends Vue {
-
+  @Mutation clearCartIndex:any;
 }
 </script>
 
@@ -75,7 +78,9 @@ export default class CartView extends Vue {
       // border: 2px solid yellow;
       }
     .cart-total-price{
-
+      width: 100%;
+      margin: 0 30px 50px 30px;
+      text-align: left;
     }
   }
   input{
