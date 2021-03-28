@@ -1,7 +1,7 @@
 <template lang="pug">
 .bottom-container.flex.flex-column
   .bottom-info
-    h3 sdlkjhfjlkhdfklg
+    h3
   .bottom-copyrights
     p All copyright reseived 2021
 </template>

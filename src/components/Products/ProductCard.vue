@@ -7,7 +7,7 @@
       .price
         h1 456 uah
     .buy-form.product-cart-buy-form.flex.space-between.align-center
-      .btn.buy-btn buy
+      .btn.buy-btn(@click='$router.push({ name: "Cart"})') buy
       .btn.cart-btn(@click='changeCartIndex') add to cart
 </template>
 

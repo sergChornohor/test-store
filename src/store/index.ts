@@ -115,6 +115,10 @@ class newStore extends VuexModule {
     console.log('12341234');
     this.categIndex = 1;
   }
+
+  // @action goToGadgets(context:any) {
+  //   context.commit('changecategIndexforGadgets');
+  // }
 }
 const store = new Vuex.Store({
   modules: {

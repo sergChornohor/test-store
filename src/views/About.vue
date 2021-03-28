@@ -24,8 +24,14 @@ export default class Category extends Vue {
 .store-name{
   width: 50%;
   height: 100px;
-  background-color: $blue-color;}
+  h1{
+    font-size: 3em;
+    color: brown;}
+  }
 .some-text{
-  width: 80%;
-  height: 500px;}
+  width: 70%;
+  height: 500px;
+  p{
+    font-size: 1.6em; }
+  }
 </style>
