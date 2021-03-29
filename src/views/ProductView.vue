@@ -128,8 +128,9 @@ export default class ProductView extends Vue {
           font-size: 1.8em;
           font-weight: 500;
           text-align: left;
-          margin: 0 20px;}
+          margin: 30px 30px;}
       .product-text p{
         font-size: 1.2em;
-        text-align: left;}
+        text-align: left;
+        margin: 30px 30px;}
 </style>

@@ -1,0 +1,64 @@
+[{
+  "name": "Canon PX3000",
+  "id": 1,
+  "price": 95,
+  "quantity": 10,
+  "category": "CAMERA",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "camera.png"
+}, 
+{
+  "name": "Gloves WintPtotect",
+  "id": 2,
+  "price": 23,
+  "quantity": 2,
+  "category": "GLOVES",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "gloves.png"
+},
+{
+  "name": "iPhone 12pro",
+  "id": 3,
+  "price": 1295,
+  "quantity": 13,
+  "category": "MOBILE",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "smartphone.png"
+},
+{
+  "name": "Xiaomi mi 11",
+  "id": 4,
+  "price": 795,
+  "quantity": 3,
+  "category": "MOBILE",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "smartphone.png"
+},
+{
+  "name": "backpack Pingwuin",
+  "id": 5,
+  "price": 395,
+  "quantity": 11,
+  "category": "backpack",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "backpack.png"
+},
+{
+  "name": "Apple Watch",
+  "id": 6,
+  "price": 695,
+  "quantity": 6,
+  "category": "smartwatch",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "smartwatch.png"
+},
+{
+  "name": "Xiaomi miBand 5",
+  "id": 7,
+  "price": 45,
+  "quantity": 16,
+  "category": "smartwatch",
+  "description": "Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:",
+  "image": "smartwatch.png"
+}
+]

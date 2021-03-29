@@ -1,8 +1,8 @@
 <template lang="pug">
-.card.flex.flex-center.ani-transition
+.card.flex.flex-center.ani-transition(@click='$router.push({ name: "Product"})')
   .img.flex.flex-center(
     :style="{'background-image':'url('+require('../../assets/img/'+getProducts[pr].image)+')'}")
-  .description.flex(@click='$router.push({ name: "Product"})')
+  .description.flex
     .product-name
       h2 {{ getProducts[pr].name }}
     .price

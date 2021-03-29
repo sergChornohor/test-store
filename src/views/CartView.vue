@@ -23,26 +23,36 @@
         CartProduct
         .cart-total-price Total Price: {{ totalPrice }} $
     .cart-confirm.flex.space-between
-      .btn.buy-btn Comfirm
+      .btn.buy-btn(@click='confirmOdrer()') Comfirm
       .btn.cart-btn(@click='clearCartIndex') Clear
+  OrderConfirm(v-if='enableOrderConfirm'
+    @close-window='enableOrderConfirm = false')
 </template>
 
 <script lang="ts">
 import { Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
-import CartProduct from '../components/Products/CartProduct.vue';
+import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
+import CartProduct from '@/components/Products/CartProduct.vue';
 // import Equal from 'equal-vue';
 
 @Options({
   components: {
     CartProduct,
     ProductCard,
+    OrderConfirm,
   },
 })
 
 export default class CartView extends Vue {
   @Mutation clearCartIndex:any;
+
+  enableOrderConfirm = false;
+
+  confirmOdrer() { // eslint-disable-next-line
+    return this.enableOrderConfirm = !this.enableOrderConfirm;
+  }
 }
 </script>
 
@@ -90,9 +100,8 @@ export default class CartView extends Vue {
     border-radius: 10px;
     margin: 5px auto 25px;
     padding: 5px 10px;}
-  input[type=text]:focus {
-    border: 3px solid #555;
-    }
+  input:focus {
+    border: 3px solid #555; }
   select {
     width: 90%;
     height: 50px;

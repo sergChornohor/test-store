@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 import {
   createModule, action, mutation, extractVuexModule, createProxy,
 } from 'vuex-class-component';
-import { ProductCategories, ProductsInterface } from '../types';
+import { ProductCategories, ProductsInterface, OrderInfoInterface } from '../types';
 
 const VuexModule = createModule();
 
@@ -71,6 +71,16 @@ class newStore extends VuexModule {
 
   categFlag = '';
 
+  orderInfo = [
+    {
+      firstName: '',
+      secondName: '',
+      phoneNumber: 380,
+      payMethod: '',
+      deliveryMethod: '',
+    },
+  ]
+
   get getCatListFull(): ProductCategories[] {
     return this.Categorieslist;
   }
@@ -107,6 +117,10 @@ class newStore extends VuexModule {
     return result;
   }
 
+  get getOrderInfo(): OrderInfoInterface[] {
+    return this.orderInfo;
+  }
+
   @mutation changeCartIndex() {
     this.cartIndex += 1;
   }
@@ -126,10 +140,6 @@ class newStore extends VuexModule {
   @mutation resetCategFlag() {
     this.categFlag = '';
   }
-
-  // @action goToGadgets(context:any) {
-  //   this.context.commit('changecategFlagforGadgets');
-  // }
 }
 const store = new Vuex.Store({
   modules: {

@@ -1,6 +1,7 @@
 <template lang="pug">
 .breadcrumbs.flex
   ul
+    //- li(@click='$router.push({ name: "Home"})') Home
     li(v-for='(breadcrumb, idx) in breadcrumbList'
     :key='idx'
     @click='routeTo(idx)'
@@ -15,9 +16,9 @@ import { HeaderLinks, breadCrumbsListInterface } from '../types';
 export default class BreadCrumbs extends Vue {
   breadcrumbList: any = [];
 
-  mounted() {
-    this.updateList();
-  }
+  // mounted() {
+  //   this.updateList();
+  // }
 
   @Watch('$route')
   onRouteChange(newValue:any) {
@@ -28,6 +29,7 @@ export default class BreadCrumbs extends Vue {
     this.breadcrumbList = this.$route.meta.breadCrumbs;
   }
 
+  // $router.push({ name: "Products"})
   routeTo(index:number): void{
     if (this.breadcrumbList[index].to) this.$router.push(this.breadcrumbList[index].to);
   }
@@ -40,5 +42,7 @@ export default class BreadCrumbs extends Vue {
 .breadcrumbs{
   width: 100%;
   height: 20px; }
-  li{}
+  li:hover{
+    cursor: pointer;
+  }
 </style>

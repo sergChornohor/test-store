@@ -24,3 +24,11 @@ export interface ProductsInterface{
     description: string,
     image: string,
 }
+
+export interface OrderInfoInterface{
+    firstName: string,
+    secondName: string,
+    phoneNumber: number,
+    payMethod: string,
+    deliveryMethod: string,
+}
