@@ -1,42 +1,41 @@
-// <template lang='pug'>
-//   .m-artHeader
-//     el-breadcrumb class="linkWay"
-//       el-breadcrumb-item(v-for="(item,index) in breadList"
-//       :key="item.id"  separator="/"
-//       :to="{ path: item.path }") {{item.name}}
-// </template>
-<script lang='ts'>
-// import { Vue } from 'vue-class-component';
-// import { Watch } from 'vue-property-decorator';
-// import Store from '@/store/index';
+<template>
+  <div>
+    {{ crumbs }} // printing raw json
+    <br><br>
+    <div class="container">
+       <b-breadcrumb :items="crumbs"/>
+    </div>
+  </div>
+</template>
 
-// export default class BreadXrumbs1 extends Vue {
-//   created() {
-//     this.getBreadcrumb();
-//   }
+<script lang="ts">
+import { Vue } from 'vue-class-component';
+import { Watch } from 'vue-property-decorator';
+import { HeaderLinks, breadCrumbsListInterface } from '../types';
 
-//   breadList = []; // route collection
+export default class BreadCrumbs extends Vue {
 
-//   public getBreadcrumb(): void {
-//     var breadNumber: any = typeof(this.$route.meta.breadNumber)!="undefined"?this.$route.meta.breadNumber:1;//The default is 1
-//     var newBread = {name:this.$route.name,path:this.$route.fullPath};//current page
-//     var breadList = Store.getters.breadListState;//Get the breadList array
-//     breadList.splice(breadNumber,breadList.length - breadNumber, newBread);
-//     var breadList: any = JSON.stringify(breadList);
-//     Store.commit('breadListMutations',breadList);
-//     this.breadList = Store.getters.breadListState;
-//   };
+  crumbs() {
+    let pathArray = this.$route.path.split("/")
+    pathArray.shift()
+    let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
+    breadcrumbArray.push({
+        path: path,
+        to: breadcrumbArray[idx - 1]
+        ? "/" + breadcrumbArray[idx - 1].path + "/" + path
+        : "/" + path,
+        text: this.$route.matched[idx].meta.breadCrumb || path,
+    });
+    return breadcrumbArray;
+    }, [])
+  return breadcrumbs;
+}
 
-//   @Watch('$route')
-//     onRouteChange(e:any) {
-//       this.getBreadcrumb();
-//     }
-// }
-// </script>
-
-// <style scoped lang="scss">
-
-// @import "../assets/style.scss";
-// .breadcrumbs{
-//   height: 20px; }
-// </style>
+};
+</script>
+<style scoped>
+.container{
+  margin: auto;
+  width: 50%
+}
+</style>

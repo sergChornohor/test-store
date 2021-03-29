@@ -6,6 +6,8 @@
     :key='idx'
     @click='routeTo(idx)'
     :class="{'linked': !!breadcrumb.to}") {{ breadcrumb.to }}
+      //- router-link(:path="{ path: getPath(crumb) }">{{ getBreadcrumb(crumb.meta.breadcrumb) }})
+
 </template>
 
 <script lang="ts">

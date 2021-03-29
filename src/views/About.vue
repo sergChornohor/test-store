@@ -1,5 +1,5 @@
 <template lang="pug">
-.container.flex.flex-center.flex-column
+.container.flex.flex-center.flex-column(@click='logRoute()')
   .store-name
     h1 VUE3 Test_Store
   .some-text
@@ -12,6 +12,10 @@ import { Vue } from 'vue-class-component';
 export default class Category extends Vue {
   text =
   'Some usefull information for customers. Something like company hystory or benefits of being this company customer'
+
+  logRoute() {
+    console.log(this.$router.currentRoute.value.name);
+  }
 }
 </script>
 

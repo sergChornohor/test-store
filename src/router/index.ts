@@ -11,38 +11,41 @@ const routes = [
     path: '/',
     name: 'Home',
     component: MainePage,
-    meta: { breadCrumbs: [{ to: '/home', text: '/' }] },
+    meta: { breadCrumbs: [{ to: 'maine', text: '/' }] },
+    children: [
+      {
+        path: 'category',
+        name: 'Category',
+        component: Category,
+        meta: { breadCrumbs: [{ to: '/category', text: 'categories' }] },
+      },
+      {
+        path: '/products',
+        name: 'Products',
+        component: Products,
+        meta: { breadCrumbs: [{ to: '/products', text: 'products' }] },
+      },
+      {
+        path: '/product',
+        name: 'Product',
+        component: ProductView,
+        meta: { breadCrumbs: [{ to: '/product', text: 'product' }] },
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: About,
+        meta: { breadCrumbs: [{ to: '/about', text: 'about' }] },
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: CartView,
+        meta: { breadCrumbs: [{ to: '/cart', text: 'cart' }] },
+      },
+    ],
   },
-  {
-    path: '/category',
-    name: 'Category',
-    component: Category,
-    meta: { breadCrumbs: [{ to: '/category', text: 'categories' }] },
-  },
-  {
-    path: '/products',
-    name: 'Products',
-    component: Products,
-    meta: { breadCrumbs: [{ to: '/products', text: 'products' }] },
-  },
-  {
-    path: '/product',
-    name: 'Product',
-    component: ProductView,
-    meta: { breadCrumbs: [{ to: '/products/product', text: 'product' }] },
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
-    meta: { breadCrumbs: [{ to: '/about', text: 'about' }] },
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: CartView,
-    meta: { breadCrumbs: [{ to: '/cart', text: 'cart' }] },
-  },
+
 ];
 
 const router = createRouter({

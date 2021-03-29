@@ -1,5 +1,6 @@
 <template lang="pug">
-.container.flex
+router-view(v-if='isNotHome()')
+.container.flex(v-else)
   .gadgets.ani-transition.flex.flex-center
     .title-container.flex.flex-center(@click='goToGadgets()') Gadgets
   .goods.ani-transition.flex.flex-center
@@ -16,6 +17,10 @@ export default class MainePage extends Vue {
   @Mutation changecategFlagforGadgets: any;
 
   @Mutation changecategFlagforGoods: any;
+
+  isNotHome() {
+    return this.$router.currentRoute.value.name !== 'Home';
+  }
 
   goToGadgets() {
     return (this.pushRouteCat() && this.changeCatGadgents());
