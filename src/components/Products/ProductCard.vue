@@ -7,8 +7,8 @@
       .price
         h1 456 uah
     .buy-form.product-cart-buy-form.flex.space-between.align-center
-      .btn.buy-btn(@click='$router.push({ name: "Cart"})') buy
-      .btn.cart-btn(@click='changeCartIndex') add to cart
+      .btn.buy-btn(@click='buyProduct(pr)') buy
+      .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
 </template>
 
 <script lang="ts">
@@ -17,7 +17,13 @@ import { Mutation } from 'vuex-class';
 import Store from '../../store';
 
 export default class ProductCard extends Vue {
-  @Mutation changeCartIndex: any;
+  pr = 0;
+
+  @Mutation reduceProductsQuantity: any;
+
+  buyProduct(i:number) {
+    return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+  }
 }
 </script>
 

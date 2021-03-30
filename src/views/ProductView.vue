@@ -1,5 +1,6 @@
 <template lang="pug">
-.product.flex.justify-content.flex-column
+router-view(v-if='isNotProduct()')
+.product.flex.justify-content.flex-column(v-else)
   .product-maine-info.flex.flex-column
     .product-name
       h1 {{ getProducts[pr].name }}
@@ -14,8 +15,8 @@
           p quantity:
           h2 {{ getProducts[pr].quantity }}
         .buy-form.flex.align-center.space-between
-          .btn.buy-btn(@click='$router.push({ name: "Cart"})') buy
-          .btn.cart-btn(@click='changeCartIndex') add to cart
+          .btn.buy-btn(@click='buyProduct(pr)') buy
+          .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
         .payment-delivery.flex.space-between.align-center
           .link(@click='enableDeliveryInfo=!enableDeliveryInfo') delivery
           .link(@click='enablePayInfo=!enablePayInfo') payment
@@ -49,6 +50,8 @@ import { ProductsInterface } from '../types';
 export default class ProductView extends Vue {
   @Mutation changeCartIndex: any;
 
+  @Mutation reduceProductsQuantity: any;
+
   pr = 0;
 
   enableDeliveryInfo = false;
@@ -56,6 +59,14 @@ export default class ProductView extends Vue {
   enablePayInfo = false;
 
   @Getter getProducts!: ProductsInterface[];
+
+  isNotProduct() {
+    return this.$router.currentRoute.value.name !== 'Product';
+  }
+
+  buyProduct(i:number) {
+    return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+  }
 }
 
 </script>

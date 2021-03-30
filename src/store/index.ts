@@ -61,6 +61,8 @@ class newStore extends VuexModule {
     },
   ];
 
+  totalPrice = 0;
+
   breadListState = [
     { name: 'Home', path: '/' },
   ];
@@ -121,12 +123,24 @@ class newStore extends VuexModule {
     return this.orderInfo;
   }
 
-  @mutation changeCartIndex() {
+  get getTotalPrice(): number {
+    return this.totalPrice;
+  }
+
+  @mutation cartTotalPrice(index:number) {
+    this.totalPrice += this.products[index].price;
+  }
+
+  @mutation reduceProductsQuantity(index:number) {
+    this.products[index].quantity -= 1;
+    this.totalPrice += this.products[index].price;
     this.cartIndex += 1;
   }
 
-  @mutation clearCartIndex() {
+  @mutation clearCartIndex(index:number) {
+    this.products[index].quantity += this.cartIndex;
     this.cartIndex = 0;
+    this.totalPrice = 0;
   }
 
   @mutation changecategFlagforGadgets() {

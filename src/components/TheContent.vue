@@ -7,10 +7,12 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import BreadCrumbs from './Breadcrumbs.vue';
+import BreadXrumbs1 from './BreadXrumbs1.vue';
 
 @Options({
   components: {
     BreadCrumbs,
+    BreadXrumbs1,
   },
 })
 

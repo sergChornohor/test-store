@@ -19,18 +19,18 @@
           select
             option(value='Novaposhta') Nova Poshta
             option(value='MistExpress') Mist Express
-      .cart-product.flex.flex-column.space-between
+      .cart-product.flex.flex-column.space-between(v-if='getTotalPrice != 0')
         CartProduct
-        .cart-total-price Total Price: {{ totalPrice }} $
+        .cart-total-price Total Price: {{ getTotalPrice }} $
     .cart-confirm.flex.space-between
       .btn.buy-btn(@click='confirmOdrer()') Comfirm
-      .btn.cart-btn(@click='clearCartIndex') Clear
+      .btn.cart-btn(@click='clearCartIndex(pr)') Clear
   OrderConfirm(v-if='enableOrderConfirm'
     @close-window='enableOrderConfirm = false')
 </template>
 
 <script lang="ts">
-import { Mutation } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
@@ -48,7 +48,11 @@ import CartProduct from '@/components/Products/CartProduct.vue';
 export default class CartView extends Vue {
   @Mutation clearCartIndex:any;
 
+  @Getter getTotalPrice:any;
+
   enableOrderConfirm = false;
+
+  pr = 0;
 
   confirmOdrer() { // eslint-disable-next-line
     return this.enableOrderConfirm = !this.enableOrderConfirm;

@@ -14,10 +14,18 @@ const routes = [
     meta: { breadCrumbs: [{ to: 'maine', text: '/' }] },
     children: [
       {
-        path: 'category',
+        path: '/category',
         name: 'Category',
         component: Category,
         meta: { breadCrumbs: [{ to: '/category', text: 'categories' }] },
+        children: [
+          {
+            path: '/gadgets',
+            name: 'Gadgets',
+            component: Category,
+            meta: { breadCrumbs: [{ to: '/gadgets', text: 'gadgets' }] },
+          },
+        ],
       },
       {
         path: '/products',
