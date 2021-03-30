@@ -1,7 +1,6 @@
 <template lang="pug">
 .breadcrumbs.flex
   ul
-    //- li(@click='$router.push({ name: "Home"})') Home
     li(v-for='(breadcrumb, idx) in breadcrumbList'
     :key='idx'
     @click='routeTo(idx)'

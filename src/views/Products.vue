@@ -4,7 +4,7 @@
       li.flex(
         v-for='(item, index) in getCatList',
         :key='index')
-        ProductCard
+        ProductCard(@click='getProducts()')
 </template>
 
 <script lang="ts">
@@ -13,6 +13,7 @@ import { Action, Getter } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import Store from '@/store/index';
 import { ProductCategories } from '@/types';
+import axios from '../service/api';
 
 @Options({
   components: {
@@ -22,6 +23,15 @@ import { ProductCategories } from '@/types';
 
 export default class Products extends Vue {
   @Getter getCatList!: ProductCategories[];
+
+  async getProducts() {
+    try {
+      const response = await this.axios.get('/products');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 </script>
