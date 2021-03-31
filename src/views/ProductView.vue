@@ -3,29 +3,29 @@ router-view(v-if='isNotProduct()')
 .product.flex.justify-content.flex-column(v-else)
   .product-maine-info.flex.flex-column
     .product-name
-      h1 {{ getProducts[pr].name }}
+      h1 {{ getProducts[getID].name }}
     .product-info-container.flex
       .product-photo(
-        :style="{'background-image':'url('+require('../assets/img/'+getProducts[pr].image)+')'}")
+        :style="{'background-image':'url('+require('../assets/img/'+getProducts[getID].image)+')'}")
       .product-buying-info
         .product-price.flex.flex-center
           p price:
-          h2 {{ getProducts[pr].price }} $
+          h2 {{ getProducts[getID].price }} $
         .product-quantity.flex.flex-start
           p quantity:
-          h2 {{ getProducts[pr].quantity }}
+          h2 {{ getProducts[getID].quantity }}
         .buy-form.flex.align-center.space-between
-          .btn.buy-btn(@click='buyProduct(pr)') buy
-          .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
+          .btn.buy-btn(@click='buyProduct(getID)') buy
+          .btn.cart-btn(@click='reduceProductsQuantity(getID)') add to cart
         .payment-delivery.flex.space-between.align-center
           .link(@click='enableDeliveryInfo=!enableDeliveryInfo') delivery
           .link(@click='enablePayInfo=!enablePayInfo') payment
   .product-description.flex
     .product-text
       .product-text-head.flex.align-center
-        h2 {{ getProducts[pr].name }} description
+        h2 {{ getProducts[getID].name }} description
       .product-text-body
-        p {{ getProducts[pr].description }}
+        p {{ getProducts[getID].description }}
     DeliveryInfo(v-if='enableDeliveryInfo'
       @close-window='enableDeliveryInfo = false')
     PayInfo(v-if='enablePayInfo'
@@ -52,13 +52,13 @@ export default class ProductView extends Vue {
 
   @Mutation reduceProductsQuantity: any;
 
-  pr = 0;
+  @Getter getProducts!: ProductsInterface[];
+
+  @Getter getID!: number;
 
   enableDeliveryInfo = false;
 
   enablePayInfo = false;
-
-  @Getter getProducts!: ProductsInterface[];
 
   isNotProduct() {
     return this.$router.currentRoute.value.name !== 'Product';

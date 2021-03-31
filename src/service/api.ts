@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export default axios.create({
-  baseURL: 'https://vuestore.getsandbox.com:443',
+const axiosConfig = axios.create({
+  baseURL: 'http://onix-test-sandbox.getsandbox.com',
   headers: { 'Content-Type': 'application/json' },
 });
+
+export default axiosConfig;

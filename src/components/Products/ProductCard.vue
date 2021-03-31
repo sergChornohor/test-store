@@ -1,11 +1,13 @@
 <template lang="pug">
 .card.flex.flex-center.flex-column.ani-transition
-    .img.flex.flex-center(@click='$router.push({ name: "Product"})')
+    .img.flex.flex-center(
+      :style="{'background-image':'url('+require('@/assets/img/'+image)+')'}"
+      @click='openProductCard(pr)')
     .description.flex
       .product-name
-        h2 NAMEl asjd
+        h2 {{ name }}
       .price
-        h1 456 uah
+        h1 {{ price }} $
     .buy-form.product-cart-buy-form.flex.space-between.align-center
       .btn.buy-btn(@click='buyProduct(pr)') buy
       .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
@@ -13,13 +15,31 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { Mutation } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
+import { Prop } from 'vue-property-decorator';
+import { ProductsInterface } from '@/types';
 import Store from '../../store';
 
 export default class ProductCard extends Vue {
-  pr = 0;
+  @Prop() pr = 0;
+
+  @Prop() name!: string;
+
+  @Prop() price!: number;
+
+  @Prop() image!: string;
+
+  @Getter getProducts!: ProductsInterface[];
+
+  @Getter getCurrentProductID!: any;
 
   @Mutation reduceProductsQuantity: any;
+
+  @Mutation thisProductID: any;
+
+  openProductCard(pr:number) {
+    return (this.$router.push({ name: 'Product' }) && this.thisProductID(pr));
+  }
 
   buyProduct(i:number) {
     return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));

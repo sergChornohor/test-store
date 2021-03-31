@@ -52,7 +52,7 @@ export default class CartView extends Vue {
 
   enableOrderConfirm = false;
 
-  pr = 0;
+  pr = 1;
 
   confirmOdrer() { // eslint-disable-next-line
     return this.enableOrderConfirm = !this.enableOrderConfirm;

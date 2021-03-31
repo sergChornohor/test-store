@@ -1,10 +1,14 @@
 <template lang="pug">
 .container
-  ul.flex(@click='getProducts')
+  ul.flex
       li.flex(
-        v-for='(item, index) in getCatList',
+        v-for='(item, index) in getProducts',
         :key='index')
-        ProductCard
+        ProductCard(
+          :name = 'item.name'
+          :price = 'item.price'
+          :image = 'item.image'
+          :pr = 'index')
 </template>
 
 <script lang="ts">
@@ -12,8 +16,8 @@ import { Options, Vue } from 'vue-class-component';
 import { Action, Getter } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import Store from '@/store/index';
-import { ProductCategories } from '@/types';
-import axios from '../service/api';
+import { ProductCategories, ProductsInterface } from '@/types';
+import storeApi from '@/service/storeApi';
 // import StoreService from '../service/storeApi';
 
 @Options({
@@ -25,9 +29,8 @@ import axios from '../service/api';
 export default class Products extends Vue {
   @Getter getCatList!: ProductCategories[];
 
-  // mounted() {
-  //   this.StoreService.getProductsApi;
-  // }
+  @Getter getProducts!: ProductsInterface[];
+
   async beforeMount() {
     try {
       const response = await this.axios.get('/assets/products/products.json');
@@ -36,6 +39,12 @@ export default class Products extends Vue {
       console.error(error);
     }
   }
+
+  // async getProducts() {
+  //   await storeApi.getProducts().then(response => response).then(() => {
+  //     console.log(this.getProducts(Products.name));
+  //   });
+  // }
 }
 
 </script>

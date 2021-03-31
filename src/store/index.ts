@@ -42,16 +42,16 @@ class newStore extends VuexModule {
 
   products = [
     {
-      name: 'Skirt',
+      name: 'Iphone 10pro',
       id: 53362,
-      price: 95,
+      price: 695,
       quantity: 10,
-      category: 'CAMERA',
+      category: 'MOBILE',
       description: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
-      image: 'camera.png',
+      image: 'mobile.png',
     },
     {
-      name: 'Crewneck T-Shirt',
+      name: 'Pinquine backpack',
       id: 45452,
       price: 45,
       quantity: 2,
@@ -72,6 +72,8 @@ class newStore extends VuexModule {
   cartIndex = 0;
 
   categFlag = '';
+
+  currentProduct = 0;
 
   orderInfo = [
     {
@@ -125,6 +127,14 @@ class newStore extends VuexModule {
 
   get getTotalPrice(): number {
     return this.totalPrice;
+  }
+
+  get getID(): any {
+    return this.currentProduct;
+  }
+
+  @mutation thisProductID(index:number) {
+    this.currentProduct = index;
   }
 
   @mutation cartTotalPrice(index:number) {

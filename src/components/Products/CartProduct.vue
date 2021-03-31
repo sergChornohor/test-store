@@ -1,17 +1,18 @@
 <template lang="pug">
 .card.flex.flex-center.ani-transition(@click='$router.push({ name: "Product"})')
   .img.flex.flex-center(
-    :style="{'background-image':'url('+require('../../assets/img/'+getProducts[pr].image)+')'}")
+    :style="{'background-image':'url('+require('../../assets/img/'+getProducts[getID].image)+')'}")
   .description.flex
     .product-name
-      h2 {{ getProducts[pr].name }}
+      h2 {{ getProducts[getID].name }}
     .price
-      h1 {{ getProducts[pr].price }} $
+      h1 {{ getProducts[getID].price }} $
 </template>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 import { Mutation, Getter } from 'vuex-class';
+import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '../../types';
 
 export default class CartProduct extends Vue {
@@ -19,7 +20,11 @@ export default class CartProduct extends Vue {
 
   @Getter getProducts!: ProductsInterface[];
 
-  pr = 0;
+  @Getter getID!: any;
+
+  beforeMount() {
+    console.log(this.getID);
+  }
 }
 </script>
 
