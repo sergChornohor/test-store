@@ -13,11 +13,11 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Action, Getter } from 'vuex-class';
+import { Action, Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
-import Store from '@/store/index';
+import { Prop } from 'vue-property-decorator';
 import { ProductCategories, ProductsInterface } from '@/types';
-import storeApi from '@/service/storeApi';
+
 // import StoreService from '../service/storeApi';
 
 @Options({
@@ -27,24 +27,25 @@ import storeApi from '@/service/storeApi';
 })
 
 export default class Products extends Vue {
+  // @Prop() ProductsList: ProductsInterface[] = [];
+
   @Getter getCatList!: ProductCategories[];
 
   @Getter getProducts!: ProductsInterface[];
 
+  @Mutation addProductFromAPI:any;
+
   async beforeMount() {
     try {
-      const response = await this.axios.get('/assets/products/products.json');
-      console.log(response.data);
+      await this.axios({ url: '/products', headers: { 'content-type': 'application/json', Accept: 'application/json' } })
+        .then((response) => {
+          // this.ProductsList = response.data;
+          this.addProductFromAPI(response.data);
+        });
     } catch (error) {
       console.error(error);
     }
   }
-
-  // async getProducts() {
-  //   await storeApi.getProducts().then(response => response).then(() => {
-  //     console.log(this.getProducts(Products.name));
-  //   });
-  // }
 }
 
 </script>

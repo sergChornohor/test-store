@@ -31,7 +31,7 @@ export default class ProductCard extends Vue {
 
   @Getter getProducts!: ProductsInterface[];
 
-  @Getter getCurrentProductID!: any;
+  @Getter gettID!: any;
 
   @Mutation reduceProductsQuantity: any;
 

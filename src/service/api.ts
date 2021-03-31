@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  baseURL: 'http://onix-test-sandbox.getsandbox.com',
+  baseURL: 'http://vuestore.getsandbox.com',
   headers: { 'Content-Type': 'application/json' },
 });
 

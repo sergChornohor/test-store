@@ -4,7 +4,7 @@ import axiosConfig from './api';
 export default class storeApi {
   static getProducts() {
     return axiosConfig.get('/products')
-      .then(response => response.data)
+      .then((response) => response.data)
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }
 

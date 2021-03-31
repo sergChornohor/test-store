@@ -24,7 +24,7 @@ class newStore extends VuexModule {
       cat: 'goods',
     },
     {
-      img: 'smartWatch.png',
+      img: 'smartwatch.png',
       title: 'SMART WATCH',
       cat: 'gadgets',
     },
@@ -40,26 +40,7 @@ class newStore extends VuexModule {
     },
   ];
 
-  products = [
-    {
-      name: 'Iphone 10pro',
-      id: 53362,
-      price: 695,
-      quantity: 10,
-      category: 'MOBILE',
-      description: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
-      image: 'mobile.png',
-    },
-    {
-      name: 'Pinquine backpack',
-      id: 45452,
-      price: 45,
-      quantity: 2,
-      category: 'BACKPACK',
-      description: 'Since a Vuex stores state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:',
-      image: 'backpack.png',
-    },
-  ];
+  products: ProductsInterface[] = [];
 
   totalPrice = 0;
 
@@ -163,6 +144,10 @@ class newStore extends VuexModule {
 
   @mutation resetCategFlag() {
     this.categFlag = '';
+  }
+
+  @mutation addProductFromAPI(list:any) {
+    this.products = list;
   }
 }
 const store = new Vuex.Store({
