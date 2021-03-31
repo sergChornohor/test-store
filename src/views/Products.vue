@@ -1,10 +1,10 @@
 <template lang="pug">
 .container
-  ul.flex
+  ul.flex(@click='getProducts')
       li.flex(
         v-for='(item, index) in getCatList',
         :key='index')
-        ProductCard(@click='getProducts()')
+        ProductCard
 </template>
 
 <script lang="ts">
@@ -14,6 +14,7 @@ import ProductCard from '@/components/Products/ProductCard.vue';
 import Store from '@/store/index';
 import { ProductCategories } from '@/types';
 import axios from '../service/api';
+// import StoreService from '../service/storeApi';
 
 @Options({
   components: {
@@ -24,10 +25,13 @@ import axios from '../service/api';
 export default class Products extends Vue {
   @Getter getCatList!: ProductCategories[];
 
-  async getProducts() {
+  // mounted() {
+  //   this.StoreService.getProductsApi;
+  // }
+  async beforeMount() {
     try {
-      const response = await this.axios.get('/products');
-      console.log(response);
+      const response = await this.axios.get('/assets/products/products.json');
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }

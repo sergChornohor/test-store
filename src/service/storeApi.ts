@@ -10,15 +10,16 @@ export class StoreService {
     });
     return data;
   };
-  
+
   getProductsApi = async () => {
     const { data } = await axiosConfig({
       method: 'GET',
       url: '/products',
       data: '',
     });
+    return data;
   };
-  
+
   pushOrderApi = async (order: OrderInfoInterface[]) => {
     const { data } = await axiosConfig({
       method: 'post',
