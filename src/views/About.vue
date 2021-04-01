@@ -23,8 +23,7 @@ export default class Category extends Vue {
 @import '../assets/style.scss';
 .container{
   width: 100%;
-  height: 100%;
-}
+  height: 100%;}
 .store-name{
   width: 50%;
   height: 100px;
@@ -37,6 +36,6 @@ export default class Category extends Vue {
   height: 500px;
   p{
     text-align: left;
-    font-size: 1.6em; }
+    font-size: 1.6em;}
   }
 </style>

@@ -1,30 +1,32 @@
 <template lang="pug">
 .card.flex.flex-center.ani-transition(@click='$router.push({ name: "Product"})')
   .img.flex.flex-center(
-    :style="{'background-image':'url('+require('../../assets/img/'+getProducts[getID].image)+')'}")
+    :style="{'background-image':'url('+require('../../assets/img/'+image)+')'}")
   .description.flex
     .product-name
-      h2 {{ getProducts[getID].name }}
+      h2 {{ name }}
     .price
-      h1 {{ getProducts[getID].price }} $
+      h1 {{ price }} $
 </template>
 
 <script lang="ts">
+import { Prop } from 'vue-property-decorator';
 import { Vue } from 'vue-class-component';
 import { Mutation, Getter } from 'vuex-class';
-import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '../../types';
 
 export default class CartProduct extends Vue {
+  @Prop() name = '';
+
+  @Prop() price = 0;
+
+  @Prop() image = '';
+
   @Mutation changeCartIndex: any;
 
   @Getter getProducts!: ProductsInterface[];
 
   @Getter getID!: any;
-
-  beforeMount() {
-    console.log(this.getID);
-  }
 }
 </script>
 
@@ -32,9 +34,9 @@ export default class CartProduct extends Vue {
 @import '../../assets/style.scss';
 
 .card{
-  width: 100%;
+  width: 90%;
   height: 150px;
-  margin: 5px;
+  margin: 2px;
   border-radius: 10px; }
 .card:hover{
   transform: scale(1.1);
@@ -44,8 +46,7 @@ export default class CartProduct extends Vue {
     height: 15%;}
     .product-name{
       width: 60%;
-      height: inherit;
-    }
+      height: inherit;}
       .product-name h2{
         font-size: 1.1em;
         color: $black-color;}

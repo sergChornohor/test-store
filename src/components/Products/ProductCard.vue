@@ -18,7 +18,6 @@ import { Vue } from 'vue-class-component';
 import { Getter, Mutation } from 'vuex-class';
 import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '@/types';
-import Store from '../../store';
 
 export default class ProductCard extends Vue {
   @Prop() pr = 0;
@@ -37,12 +36,17 @@ export default class ProductCard extends Vue {
 
   @Mutation thisProductID: any;
 
+  @Mutation addToCartlistTemp: any;
+
   openProductCard(pr:number) {
     return (this.$router.push({ name: 'Product' }) && this.thisProductID(pr));
   }
 
   buyProduct(i:number) {
-    return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    // console.log(this.getProducts[i]);
+    return (this.$router.push({ name: 'Cart' })
+      && this.reduceProductsQuantity(i));
+  // && this.addToCartlistTemp(i));
   }
 }
 </script>
@@ -57,8 +61,7 @@ export default class ProductCard extends Vue {
   border-radius: 10px; }
 .card:hover{
   transform: scale(1.1);
-  background-color: $blue-color1;
-}
+  background-color: $blue-color1;}
   .img{
     width: 70%;
     height: 70%;
@@ -71,8 +74,7 @@ export default class ProductCard extends Vue {
     height: 15%;}
     .product-name{
       width: 60%;
-      height: inherit;
-    }
+      height: inherit;}
       .product-name h2{
         font-size: 1.2em;
         color: $black-color;}

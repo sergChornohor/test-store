@@ -5,7 +5,7 @@
   .modal-content-wrapper
     .modal-content.flex-column
       .product-name
-        h2 Sorry 
+        h2 Sorry
       .text-info
         p this product is not available
 </template>
@@ -57,6 +57,5 @@ export default class PayInfo extends Vue {
         height: auto;
         padding: 10px;}
       .text-info p{
-        color: red;
-      }
+        color: red;}
 </style>

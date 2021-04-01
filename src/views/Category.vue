@@ -12,7 +12,6 @@ table.table-grid
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import CategoryCard from '@/components/Products/CategoryCard.vue';
 import { ProductCategories } from '@/types';
@@ -41,13 +40,11 @@ table{
   background-color: linear-gradient(#deeef5, #f4f5cd); }
   ul{
     width: 100%;
-    flex-wrap: wrap;
-    }
+    flex-wrap: wrap;}
     li{
       height: 200px;
       width: 200px;
-      // border: 2px solid red;
       margin: 15px;
       border-radius: 8px;
-      background-color: $blue-color1; }
+      background-color: $blue-color1;}
 </style>

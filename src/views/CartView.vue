@@ -20,11 +20,18 @@
             option(value='Novaposhta') Nova Poshta
             option(value='MistExpress') Mist Express
       .cart-product.flex.flex-column.space-between(v-if='getTotalPrice != 0')
-        CartProduct
+        ul.flex.justify-center.flex-column
+          li.flex.justify-center(v-for='(items, id) in getCartlistTemp',
+            :key='id')
+            CartProduct(
+              :name='items.name'
+              :image='items.image'
+              :price='items.price'
+            )
         .cart-total-price Total Price: {{ getTotalPrice }} $
     .cart-confirm.flex.space-between
       .btn.buy-btn(@click='confirmOdrer()') Comfirm
-      .btn.cart-btn(@click='clearCartIndex(pr)') Clear
+      .btn.cart-btn(@click='clearCartIndex(getID)') Clear
   OrderConfirm(v-if='enableOrderConfirm'
     @close-window='enableOrderConfirm = false')
 </template>
@@ -35,7 +42,7 @@ import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
 import CartProduct from '@/components/Products/CartProduct.vue';
-// import Equal from 'equal-vue';
+import { ProductsInterface } from '@/types';
 
 @Options({
   components: {
@@ -50,25 +57,29 @@ export default class CartView extends Vue {
 
   @Getter getTotalPrice:any;
 
+  @Getter getCartlistTemp!: ProductsInterface[];
+
   enableOrderConfirm = false;
 
-  pr = 1;
+  @Getter getID!: number;
 
   confirmOdrer() { // eslint-disable-next-line
     return this.enableOrderConfirm = !this.enableOrderConfirm;
+  }
+
+  mounted() {
+    console.log(this.getCartlistTemp);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-// @import 'equal-vue/dist/style.css'
 @import '../assets/style.scss';
 .cart-wrapper{
   width: 100%;
-  height: 100%;
-}
+  height: 100%;}
 .cart-container{
-  width: 70%;
+  width: 75%;
   height: 75%;
   .cart-declair-name{
     width: 100%;
@@ -78,24 +89,25 @@ export default class CartView extends Vue {
     width: 100%;
     height: 500px;
     margin: 20px 0;
-    // border: 2px solid red;
     .cart-form{
       width: 50%;
       height: 100%;
-      // border: 2px solid green;
       form{
         padding: 30px 0;
       }}
     .cart-product{
       width: 50%;
       height: 100%;
-      // border: 2px solid yellow;
+      // overflow-y: scroll;
+      overflow-x: hidden;
+      li{
+        width: 90%;
+      }
       }
     .cart-total-price{
       width: 100%;
       margin: 0 30px 50px 30px;
-      text-align: left;
-    }
+      text-align: left;}
   }
   input{
     width: 90%;
@@ -119,8 +131,6 @@ export default class CartView extends Vue {
       option{
         height: 30px; }
   .cart-confirm{
-    padding: 0 17%;
+    padding: 0 17%;}
   }
-  }
-
 </style>

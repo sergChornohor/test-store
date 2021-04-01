@@ -35,7 +35,6 @@ router-view(v-if='isNotProduct()')
 <script lang="ts">
 import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
 import DeliveryInfo from '../components/Modal/DeliveryInfo.vue';
 import PayInfo from '../components/Modal/PayInfo.vue';
 import { ProductsInterface } from '../types';
@@ -90,8 +89,6 @@ export default class ProductView extends Vue {
         text-align: center;
         font-size: 2em;
         color: $black-color;}
-  .product-info-container{
-    }
     .product-photo{
       width: 50%;
       height: 400px;

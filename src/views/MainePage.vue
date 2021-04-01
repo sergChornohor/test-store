@@ -49,44 +49,35 @@ export default class MainePage extends Vue {
 
 .container{
   width: 100%;
-  height: 100%;
-}
+  height: 100%;}
   .gadgets{
     width: 50%;
     height: 100%;
-    background-color: $blue-color2;
-  }
+    background-color: $blue-color2;}
   .gadgets:hover{
     background-color:$blue-color;
-    transform: scaleX(2.1);
-  }
-
+    transform: scaleX(2.1);}
   .goods{
     width: 50%;
     height: 100%;
-    background-color: rgba(255, 255, 0, 0.445);
-  }
+    background-color: rgba(255, 255, 0, 0.445);}
   .goods:hover{
     background-color: $yellow-color;
-    transform: scaleX(2.1);
-  }
+    transform: scaleX(2.1);}
     .title-container{
       width: 250px;
       height: 500px;
       font-size: 5em;
       writing-mode: vertical-rl;
-      text-orientation: upright;
-    }
+      text-orientation: upright;}
     .goods:hover .title-container{
       font-size: 6em;
       transform: translateX(-60px);
       color: $blue-color;
-      cursor: pointer;
-    }
+      cursor: pointer;}
     .gadgets:hover .title-container{
       font-size: 6em;
       transform: translateX(60px);
       color: $yellow-color;
-      cursor: pointer;
-    }
+      cursor: pointer;}
 </style>

@@ -7,10 +7,8 @@
 </template>
 
 <script lang="ts">
-import { ProductCategories } from '@/types';
 import { Vue } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import Store from '@/store/index';
 
 export default class CategoryCard extends Vue {
   @Prop() img!: string
@@ -30,12 +28,10 @@ export default class CategoryCard extends Vue {
   border-radius: 8px; }
 .card:hover{
   background-color: $blue-color2;
-  transform: scale(1.1);
-}
+  transform: scale(1.1);}
   .img{
     width: 70%;
     height: 70%;
-   // background-image: url('../../assets/img/camera.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;}
@@ -45,5 +41,4 @@ export default class CategoryCard extends Vue {
     h2{
       font-size: 25px;
       color: $dark-blue-color;}
-
 </style>

@@ -15,7 +15,6 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Watch, Prop } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 import BreadCrumbs from './Breadcrumbs.vue';
 import { HeaderLinks, breadCrumbsListInterface } from '../types';
@@ -43,8 +42,7 @@ export default class TheHeader extends Vue {
 <style scoped lang="scss">
 @import "../assets/style.scss";
 a{
-  text-decoration: none;
-}
+  text-decoration: none;}
 .header-container{
   width: 100%;
   height: 70px;
@@ -75,8 +73,7 @@ a{
       height: 13px;
       text-align: center;
       font-size: 17px;
-      color: $cart-btn-red;
-    }
+      color: $cart-btn-red;}
   .cart-form:hover{
     width: 40px;
     height: 40px;
@@ -84,6 +81,5 @@ a{
     background-size: contain;
     margin-right: 40px; }
     .cart-form:hover .index{
-      color: $yellow-color;
-    }
+      color: $yellow-color;}
 </style>

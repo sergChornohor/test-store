@@ -13,12 +13,9 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Action, Getter, Mutation } from 'vuex-class';
+import { Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
-import { Prop } from 'vue-property-decorator';
 import { ProductCategories, ProductsInterface } from '@/types';
-
-// import StoreService from '../service/storeApi';
 
 @Options({
   components: {
@@ -27,8 +24,6 @@ import { ProductCategories, ProductsInterface } from '@/types';
 })
 
 export default class Products extends Vue {
-  // @Prop() ProductsList: ProductsInterface[] = [];
-
   @Getter getCatList!: ProductCategories[];
 
   @Getter getProducts!: ProductsInterface[];
@@ -39,7 +34,6 @@ export default class Products extends Vue {
     try {
       await this.axios({ url: '/products', headers: { 'content-type': 'application/json', Accept: 'application/json' } })
         .then((response) => {
-          // this.ProductsList = response.data;
           this.addProductFromAPI(response.data);
         });
     } catch (error) {

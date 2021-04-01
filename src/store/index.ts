@@ -50,6 +50,8 @@ class newStore extends VuexModule {
 
   CategorieslistTemp = [];
 
+  CartlistTemp: ProductsInterface[] = [];
+
   cartIndex = 0;
 
   categFlag = '';
@@ -65,6 +67,10 @@ class newStore extends VuexModule {
       deliveryMethod: '',
     },
   ]
+
+  get getCartlistTemp(): ProductsInterface[] {
+    return this.CartlistTemp;
+  }
 
   get getCatListFull(): ProductCategories[] {
     return this.Categorieslist;
@@ -125,6 +131,7 @@ class newStore extends VuexModule {
   @mutation reduceProductsQuantity(index:number) {
     this.products[index].quantity -= 1;
     this.totalPrice += this.products[index].price;
+    this.CartlistTemp.push(this.products[index]); // delete this line in future
     this.cartIndex += 1;
   }
 
@@ -132,6 +139,7 @@ class newStore extends VuexModule {
     this.products[index].quantity += this.cartIndex;
     this.cartIndex = 0;
     this.totalPrice = 0;
+    this.CartlistTemp = [];
   }
 
   @mutation changecategFlagforGadgets() {
@@ -148,6 +156,10 @@ class newStore extends VuexModule {
 
   @mutation addProductFromAPI(list:any) {
     this.products = list;
+  }
+
+  @mutation addToCartlistTemp(i:any) {
+    this.CartlistTemp.push(this.products[i]);
   }
 }
 const store = new Vuex.Store({
