@@ -26,6 +26,10 @@ export default class Category extends Vue {
   @Getter getCatList!: ProductCategories[];
 
   @Getter getCatListGadgets!: ProductCategories[];
+
+  // goToCategoryProducts(cat:string) {
+  //   return (this.$router.push({ name: "Products"}) && )
+  // }
 }
 </script>
 
