@@ -11,7 +11,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: MainePage,
-    meta: { breadCrumbs: [{ to: 'maine', text: '/' }] },
+    meta: { breadCrumbs: [{ to: 'main', text: '/' }] },
     children: [
       {
         path: '/category',

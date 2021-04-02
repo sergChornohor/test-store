@@ -1,7 +1,7 @@
 <template lang="pug">
 .cart-wrapper.flex.flex-center
   .cart-container.flex.flex-column
-    .cart-declair-name RTYRCT HGK HJSHJB
+    .cart-declair-name YOUR CART DESK
     .cart-content.flex.space-between
       .cart-form
         form.flex.flex-column
