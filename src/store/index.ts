@@ -58,6 +58,8 @@ class newStore extends VuexModule {
 
   currentProduct = 0;
 
+  enableNoProduct = false;
+
   orderInfo = [
     {
       firstName: '',
@@ -69,6 +71,10 @@ class newStore extends VuexModule {
   ]
 
   cartErrors = [];
+
+  get getEnableNoProduct(): boolean {
+    return this.enableNoProduct;
+  }
 
   get getCartErrors(): any[] {
     return this.cartErrors;
@@ -126,12 +132,18 @@ class newStore extends VuexModule {
     return this.currentProduct;
   }
 
+  @mutation changeEnableNoProduct() {
+    this.enableNoProduct = !this.enableNoProduct;
+  }
+
   @mutation setCartErrors(list:any) {
     this.cartErrors = list;
   }
 
   @mutation thisProductID(index:number) {
     this.currentProduct = index;
+    this.products[index].quantity -= 1;
+    this.totalPrice += this.products[index].price;
   }
 
   @mutation cartTotalPrice(index:number) {

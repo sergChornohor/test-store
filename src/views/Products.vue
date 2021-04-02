@@ -9,17 +9,21 @@
           :price = 'item.price'
           :image = 'item.image'
           :pr = 'index')
+  NoProduct(v-if='getEnableNoProduct'
+    @window-close='chanheEnableNoProduct')
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
+import NoProduct from '@/components/Modal/NoProduct.vue';
 import { ProductCategories, ProductsInterface } from '@/types';
 
 @Options({
   components: {
     ProductCard,
+    NoProduct,
   },
 })
 
@@ -27,6 +31,10 @@ export default class Products extends Vue {
   @Getter getCatList!: ProductCategories[];
 
   @Getter getProducts!: ProductsInterface[];
+
+  @Getter getEnableNoProduct!: boolean;
+
+  @Mutation chanheEnableNoProduct:any;
 
   @Mutation addProductFromAPI:any;
 

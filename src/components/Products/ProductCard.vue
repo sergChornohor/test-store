@@ -1,20 +1,20 @@
 <template lang="pug">
 .card.flex.flex-center.flex-column.ani-transition
-    .img.flex.flex-center(
-      :style="{'background-image':'url('+require('@/assets/img/'+image)+')'}"
-      @click='openProductCard(pr)')
-    .description.flex
-      .product-name
-        h2 {{ name }}
-      .price
-        h1 {{ price }} $
-    .buy-form.product-cart-buy-form.flex.space-between.align-center
-      .btn.buy-btn(@click='buyProduct(pr)') buy
-      .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
+  .img.flex.flex-center(
+    :style="{'background-image':'url('+require('@/assets/img/'+image)+')'}"
+    @click='openProductCard(pr)')
+  .description.flex
+    .product-name
+      h2 {{ name }}
+    .price
+      h1 {{ price }} $
+  .buy-form.product-cart-buy-form.flex.space-between.align-center
+    .btn.buy-btn(@click='buyProduct(pr)') buy
+    .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
 import { Getter, Mutation } from 'vuex-class';
 import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '@/types';
@@ -38,15 +38,23 @@ export default class ProductCard extends Vue {
 
   @Mutation addToCartlistTemp: any;
 
-  openProductCard(pr:number) {
-    return (this.$router.push({ name: 'Product' }) && this.thisProductID(pr));
+  @Mutation changeEnableNoProduct: any;
+
+  openProductCard(i:number) {
+    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Product' }) && this.thisProductID(i)); // eslint-disable-next-line
+    else return this.changeEnableNoProduct();
   }
 
   buyProduct(i:number) {
-    // console.log(this.getProducts[i]);
-    return (this.$router.push({ name: 'Cart' })
-      && this.reduceProductsQuantity(i));
-  // && this.addToCartlistTemp(i));
+    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    // eslint-disable-next-line
+    else return this.changeEnableNoProduct();
+  }
+
+  checkProductQuantity(index:number) {
+    console.log(this.getProducts[index].quantity);
+    if (this.getProducts[index].quantity > 0) return true; // eslint-disable-next-line
+    else return false;
   }
 }
 </script>

@@ -13,8 +13,8 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 
-export default class PayInfo extends Vue {
-
+export default class NoProduct extends Vue {
+  emits = ['close-window'];
 }
 </script>
 
