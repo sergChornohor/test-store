@@ -68,6 +68,12 @@ class newStore extends VuexModule {
     },
   ]
 
+  cartErrors = [];
+
+  get getCartErrors(): any[] {
+    return this.cartErrors;
+  }
+
   get getCartlistTemp(): ProductsInterface[] {
     return this.CartlistTemp;
   }
@@ -118,6 +124,10 @@ class newStore extends VuexModule {
 
   get getID(): any {
     return this.currentProduct;
+  }
+
+  @mutation setCartErrors(list:any) {
+    this.cartErrors = list;
   }
 
   @mutation thisProductID(index:number) {

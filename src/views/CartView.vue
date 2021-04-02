@@ -4,19 +4,23 @@
     .cart-declair-name YOUR CART DESK
     .cart-content.flex.space-between
       .cart-form
-        form.flex.flex-column
-          label() First Name
-          input(type='text', name='firstName', value='')#firstname
-          label() Second Name
-          input(type='text', name='secondName', value='')#secondname
-          label() Phone Number
-          input(type='number', name='phoneNumber', value='')#phonenumber
-          label Paymment Method
-          select
+        form.flex.flex-column(
+          ref='form'
+          id='orderForm'
+          @submit.prevent='checkForm()'
+          method='post')
+          label(for='fulleName') Full Name
+          input(type='text', name='fullName', v-model='fullName', id='fullName')
+          label(for='phoneNumber') Phone Number
+          input(type='number', name='phoneNumber', v-model='phoneNumber', id='phoneNumber')
+          label(for='homeAddress') Home Address
+          input(type='text', name='homeAddress', v-model='homeAddress', id='homeAddress')
+          label(for='paymentMethod') Paymment Method
+          select(name='paymentMethod' v-model='paymentMethod', id='paymentMethod')
             option(value='cash') Cash
             option(value='creditCart') Credit Cart
-          label Delivery Method
-          select
+          label(for='deliveryMethod') Delivery Method
+          select(name='deliveryMethod', v-model='deliveryMethod', id='deliveryMethod')
             option(value='Novaposhta') Nova Poshta
             option(value='MistExpress') Mist Express
       .cart-product.flex.flex-column.space-between(v-if='getTotalPrice != 0')
@@ -30,8 +34,10 @@
             )
         .cart-total-price Total Price: {{ getTotalPrice }} $
     .cart-confirm.flex.space-between
-      .btn.buy-btn(@click='confirmOdrer()') Comfirm
+      .btn.buy-btn(@click='checkForm()') Comfirm
       .btn.cart-btn(@click='clearCartIndex(getID)') Clear
+  CartErrors(v-if='enableCartErrors'
+    @close-window='enableCartErrors = false')
   OrderConfirm(v-if='enableOrderConfirm'
     @close-window='enableOrderConfirm = false')
 </template>
@@ -41,6 +47,7 @@ import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
+import CartErrors from '@/components/Modal/CartErrors.vue';
 import CartProduct from '@/components/Products/CartProduct.vue';
 import { ProductsInterface } from '@/types';
 
@@ -49,28 +56,71 @@ import { ProductsInterface } from '@/types';
     CartProduct,
     ProductCard,
     OrderConfirm,
+    CartErrors,
   },
 })
 
 export default class CartView extends Vue {
-  @Mutation clearCartIndex:any;
+  formErrors: any[] = [];
+
+  fullName = null;
+
+  phoneNumber = null;
+
+  homeAddress = '';
+
+  paymentMethod = null;
+
+  deliveryMethod = null;
+
+  enableOrderConfirm = false;
+
+  enableCartErrors = false;
 
   @Getter getTotalPrice:any;
 
   @Getter getCartlistTemp!: ProductsInterface[];
 
-  enableOrderConfirm = false;
-
   @Getter getID!: number;
+
+  @Getter getCartErrors:any;
+
+  @Mutation clearCartIndex:any;
+
+  @Mutation setCartErrors:any;
 
   confirmOdrer() { // eslint-disable-next-line
     return this.enableOrderConfirm = !this.enableOrderConfirm;
   }
 
-  mounted() {
-    console.log(this.getCartlistTemp);
+  checkForm() {
+    this.formErrors = [];
+    if (!this.fullName) {
+      this.formErrors.push('Fill the Full Name fild!');
+    }
+    if (!this.phoneNumber) {
+      this.formErrors.push('Fill the Phone Number fild!');
+    }
+    if (!this.homeAddress) {
+      this.formErrors.push('Fill the Home Address fild!');
+    }
+    if (!this.paymentMethod) {
+      this.formErrors.push('Fill the Payment Method fild!');
+    }
+    if (!this.deliveryMethod) {
+      this.formErrors.push('Fill the Delivery Method fild!');
+    }
+    if (this.formErrors.length) {
+      this.setCartErrors(this.formErrors);
+      console.log(this.getCartErrors); // eslint-disable-next-line
+      this.enableCartErrors = !this.enableCartErrors;
+    } else { // eslint-disable-next-line
+      this.enableOrderConfirm = !this.enableOrderConfirm;
+    }
+    return this.enableOrderConfirm;
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
