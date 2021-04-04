@@ -111,6 +111,14 @@ class newStore extends VuexModule {
     });
     return result;
   }
+  
+  // get getCategoryList(): any {
+  //   const result: { img: string; title: string; cat: string; }[] = [];
+  //   this.Categorieslist.forEach((cats) => {
+  //     if (cats.cat === category) (result.push(cats));
+  //   });
+  //   return result;
+  // }
 
   get getCatList(): any {
     let result: { img: string; title: string; cat: string; }[] = [];
