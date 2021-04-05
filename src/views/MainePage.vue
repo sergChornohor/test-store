@@ -69,15 +69,51 @@ export default class MainePage extends Vue {
       height: 500px;
       font-size: 5em;
       writing-mode: vertical-rl;
-      text-orientation: upright;}
+      text-orientation: upright;
+      @include mq('desktop'){
+        font-size: 4.5em;
+      }
+      @include mq('tablet-wide'){
+        font-size: 4em;
+      }
+      @include mq('tablet'){
+        font-size: 3.5em;
+      }
+      @include mq('phone-wide'){
+        font-size: 3em;
+      }}
     .goods:hover .title-container{
       font-size: 6em;
       transform: translateX(-60px);
       color: $blue-color;
-      cursor: pointer;}
+      cursor: pointer;
+      @include mq('desktop'){
+        font-size: 5.5em;
+      }
+      @include mq('tablet-wide'){
+        font-size: 5em;
+      }
+      @include mq('tablet'){
+        font-size: 4.5em;
+      }
+      @include mq('phone-wide'){
+        font-size: 4em;
+      }}
     .gadgets:hover .title-container{
       font-size: 6em;
       transform: translateX(60px);
       color: $yellow-color;
-      cursor: pointer;}
+      cursor: pointer;
+      @include mq('desktop'){
+        font-size: 4.5em;
+      }
+      @include mq('tablet-wide'){
+        font-size: 4em;
+      }
+      @include mq('tablet'){
+        font-size: 3.5em;
+      }
+      @include mq('phone-wide'){
+        font-size: 3em;
+      }}
 </style>

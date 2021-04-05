@@ -26,7 +26,7 @@ $breakpoints: (
     "phone-wide":   480px,
     "phablet":      560px,
     "tablet-small": 640px,
-    "tablet":       792px,
+    "tablet":       793px,
     "tablet-wide":  1024px,
     "desktop":      1248px,
     "desktop-wide": 1440px
@@ -175,7 +175,13 @@ font-weight: 400;
   max-width: 1050px;
   margin: 0 auto;
  // flex-direction: row-reverse;
-  height: 100%;
+  height: 100%;  
+  @include mq('tablet'){
+    width: 80%;
+  }
+  @include mq('phone-wide'){
+    width: 100%;
+  }
 }
 .content-wrapper{
 width: 100%;
@@ -190,7 +196,17 @@ overflow-y: scroll;
 overflow-x: hidden;
 height: -webkit-fill-available;
 background-color: $bg-color1;
+@include mq('desktop'){
+  max-width: 1070px;
+}@include mq('tablet-wide'){
+  max-width: 970px;
 }
+@include mq('tablet'){
+  max-width: 770px;
+}
+@include mq('phone-wide'){
+  max-width: 570px;
+}}
 .btn {
   width: 130px;
   height: 50px;	
@@ -230,5 +246,24 @@ background-color: $bg-color1;
   .cart-btn:hover {
     background:linear-gradient(to bottom, $cart-btn-red1 5%, $cart-btn-red 100%);
     background-color:$cart-btn-red1; }
-    
+
+// CART VIEW
+.cart-wrapper{
+  width: 100%;
+  height: 100%;}
+.cart-container{
+  width: 75%;
+  height: 75%;
+  @include mq('tablet-wide'){
+    min-width: 85%;
+    height: 80%;
+  }
+  @include mq('tablet'){
+    min-width: 90%;
+    height: 85%;
+  }
+  @include mq('phone-wide'){
+    width: 95%;
+    height: 90%;
+  }}
   

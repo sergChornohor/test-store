@@ -38,13 +38,18 @@ export default class Category extends Vue {
 table{
   width: 100%;
   height: 80vh;
-  margin: 30px;
   border: olive 2px;
   overflow-y: hidden;
   background-color: linear-gradient(#deeef5, #f4f5cd); }
   ul{
     width: 100%;
-    flex-wrap: wrap;}
+    flex-wrap: wrap;
+    @include mq('tablet'){
+      @include justify-content(center);
+    }
+    @include mq('phone-wide'){
+      @include justify-content(center);
+    }}
     li{
       height: 200px;
       width: 200px;

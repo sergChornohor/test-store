@@ -108,17 +108,49 @@ export default class ProductView extends Vue {
           margin-right: 10px;}
         .product-price h2{
           font-size: 2.5em;
-          color: $green-color;}
+          color: $green-color;
+          @include mq('desktop'){
+            font-size: 2.3em;
+          }
+          @include mq('tablet-wide'){
+            font-size: 2.1em;
+          }
+          @include mq('tablet'){
+            font-size: 1.9em;
+          }
+          @include mq('phone-wide'){
+            font-size: 1.8em;
+          }}
       .product-quantity{
-        padding-left: 50px;      }
+        padding-left: 50px;
+        @include mq('phone-wide'){
+          padding-left: 20px;
+        }}
       .payment-delivery{
         height: 40px;
-        padding: 10px 100px;}
+        padding: 10px 100px;
+        @include mq('tablet-wide'){
+          padding: 10px 80px;
+        }
+        @include mq('tablet'){
+          padding: 10px 60px;
+          flex-direction: column;
+        }
+        @include mq('phone-wide'){
+          padding: 10px 20px;
+          flex-direction: column;
+        }}
         .link{
           height: 100%;
           width: auto;
           cursor: pointer;
-          text-align: center;}
+          text-align: center;
+          @include mq('tablet'){
+            padding: 10px;
+          }
+          @include mq('phone-wide'){
+            padding: 10px;
+        }}
         .link:hover{
           color: $dark-blue-color;}
   .product-description{

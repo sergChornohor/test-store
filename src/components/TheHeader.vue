@@ -59,7 +59,10 @@ a{
         width: 100%;
         text-align: center;
         font-size: 17px;
-        color: $yellow-color; }
+        color: $yellow-color;
+        @include mq('phone-wide'){
+          font-size: 14px;
+      }}
       a:hover, a:active{
         color: $white-color; }
   .cart-form{
@@ -67,13 +70,20 @@ a{
     height: 40px;
     background-image: url('../assets/img/Buy-icon-yellow.png');
     background-size: contain;
-    margin-right: 40px;}
+    background-repeat: no-repeat;
+    margin-right: 40px;
+    @include mq('phone-wide'){
+      margin-right: 10px;}}
     .index{
       width: 13px;
       height: 13px;
       text-align: center;
       font-size: 17px;
-      color: $cart-btn-red;}
+      color: $cart-btn-red;
+      @include mq('phone-wide'){
+      width: 10px;
+      height: 10px;
+      font-size: 13px;}}
   .cart-form:hover{
     width: 40px;
     height: 40px;

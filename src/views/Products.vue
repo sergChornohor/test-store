@@ -63,10 +63,22 @@ table{
   background-color: linear-gradient(#deeef5, #eff3e1); }
   ul{
     width: 100%;
-    flex-wrap: wrap;}
+    flex-wrap: wrap;
+    @include mq('tablet'){
+      @include justify-content(center);
+    }
+    @include mq('phone-wide'){
+      @include justify-content(center);
+    }
     li{
       height: 300px;
       width: 300px;
       border-radius: 10px;
-      margin: 15px;}
+      margin: 15px;
+      @include mq('tablet'){
+        width: 240px;
+        height: 240px;
+        margin: 10px;
+      }}
+  }
 </style>

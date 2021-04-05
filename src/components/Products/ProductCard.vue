@@ -63,10 +63,13 @@ export default class ProductCard extends Vue {
 @import '../../assets/style.scss';
 
 .card{
-  width: 250px;
-  height: 250px;
+  width: 90%;
+  height: 90%;
   margin: 25px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  @include mq('tablet'){
+    margin: 15px;
+  }}
 .card:hover{
   transform: scale(1.1);
   background-color: $blue-color1;}
@@ -85,12 +88,24 @@ export default class ProductCard extends Vue {
       height: inherit;}
       .product-name h2{
         font-size: 1.2em;
-        color: $black-color;}
+        color: $black-color;
+        @include mq('tablet'){
+          font-size: 1.1em;
+        }
+        @include mq('phone-wide'){
+          font-size: 1em;
+        }}
     .price{
       width: 40%;}
       .price h1{
         font-size: 1.5em;
-        color: $green-color;}
+        color: $green-color;
+        @include mq('tablet'){
+          font-size: 1.3em;
+        }
+        @include mq('phone-wide'){
+          font-size: 1.1em;
+        }}
   .product-cart-buy-form{
     width: 100%;
     height: 15%;

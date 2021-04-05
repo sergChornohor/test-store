@@ -125,62 +125,76 @@ export default class CartView extends Vue {
 
 <style lang="scss" scoped>
 @import '../assets/style.scss';
-.cart-wrapper{
+
+.cart-declair-name{
   width: 100%;
-  height: 100%;}
-.cart-container{
-  width: 75%;
-  height: 75%;
-  .cart-declair-name{
-    width: 100%;
-    height: 100px;
-    font-size: 3em;}
-  .cart-content{
-    width: 100%;
-    height: 500px;
-    margin: 20px 0;
-    .cart-form{
-      width: 50%;
-      height: 100%;
-      form{
-        padding: 30px 0;
-      }}
-    .cart-product{
-      width: 50%;
-      height: 100%;
-      // overflow-y: scroll;
-      overflow-x: hidden;
-      li{
-        width: 90%;
-      }
-      }
-    .cart-total-price{
-      width: 100%;
-      margin: 0 30px 50px 30px;
-      text-align: left;}
+  height: 100px;
+  font-size: 3em;
+  @include mq('phone-wide'){
+    font-size: 2.2em;
+  }}
+.cart-content{
+  width: 100%;
+  height: 500px;
+  margin: 20px 0;
+  @include mq('tablet'){
+    margin: 15px 0;
   }
-  input{
-    width: 90%;
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 5px auto 25px;
-    padding: 5px 10px;}
-  input:focus {
+  @include mq('phone-wide'){
+    @include flexbox();
+    flex-direction: column;
+    margin: 10px 0;
+    height: min-content;
+  }
+  .cart-form{
+    width: 50%;
+    height: 100%;
+    @include mq('phone-wide'){
+    width: 100%;}
+    form{
+      padding: 30px 0;
+    }}
+  .cart-product{
+    width: 50%;
+    height: 100%;
+    // overflow-y: scroll;
+    overflow-x: hidden;
+    @include mq('phone-wide'){
+    width: 100%;
+    overflow-x: initial;}
+    li{
+      width: 90%;
+    }
+    }
+  .cart-total-price{
+    width: 100%;
+    margin: 0 30px 50px 30px;
+    text-align: left;}
+}
+input{
+  width: 90%;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px auto 25px;
+  padding: 5px 10px;}
+input:focus {
+  border: 3px solid #555; }
+select {
+  width: 90%;
+  height: 50px;
+  margin: 5px auto 25px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f1f1f1; }
+  select:focus {
     border: 3px solid #555; }
-  select {
-    width: 90%;
-    height: 50px;
-    margin: 5px auto 25px;
-    padding: 5px 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: #f1f1f1; }
-    select:focus {
-      border: 3px solid #555; }
-      option{
-        height: 30px; }
-  .cart-confirm{
-    padding: 0 17%;}
+    option{
+      height: 30px; }
+.cart-confirm{
+  padding: 3% 17%;
+  @include mq('phone-wide'){
+    padding: 5% 10%;}
   }
 </style>
