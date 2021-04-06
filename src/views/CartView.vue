@@ -31,6 +31,7 @@
               :name='items.name'
               :image='items.image'
               :price='items.price'
+              :id='items.id'
             )
         .cart-total-price Total Price: {{ getTotalPrice }} $
     .cart-confirm.flex.space-between

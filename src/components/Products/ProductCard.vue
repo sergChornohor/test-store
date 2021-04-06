@@ -1,36 +1,28 @@
 <template lang="pug">
 .card.flex.flex-center.flex-column.ani-transition
   .img.flex.flex-center(
-    :style="{'background-image':'url('+require('@/assets/img/'+image)+')'}"
-    @click='openProductCard(pr)')
+    :style="{'background-image':'url('+require('@/assets/img/'+findProductById(pr).image)+')'}"
+    @click='openProductCard(findProductById(pr).id+1)')
   .description.flex
     .product-name
-      h2 {{ name }}
+      h2 {{ findProductById(pr).name }}
     .price
-      h1 {{ price }} $
+      h1 {{ findProductById(pr).price }} $
   .buy-form.product-cart-buy-form.flex.space-between.align-center
     .btn.buy-btn(@click='buyProduct(pr)') buy
     .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Vue } from 'vue-class-component';
 import { Getter, Mutation } from 'vuex-class';
 import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '@/types';
 
 export default class ProductCard extends Vue {
-  @Prop() pr = 0;
-
-  @Prop() name!: string;
-
-  @Prop() price!: number;
-
-  @Prop() image!: string;
+  @Prop() pr!: number;
 
   @Getter getProducts!: ProductsInterface[];
-
-  @Getter gettID!: any;
 
   @Mutation reduceProductsQuantity: any;
 
@@ -40,9 +32,12 @@ export default class ProductCard extends Vue {
 
   @Mutation changeEnableNoProduct: any;
 
+  findProductById(ID:number) {
+    return this.getProducts.find((x) => x.id === ID);
+  }
+
   openProductCard(i:number) {
-    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Product' }) && this.thisProductID(i)); // eslint-disable-next-line
-    else return this.changeEnableNoProduct();
+    return (this.$router.push({ name: 'ProductDetail', params: { id: i } }) && this.thisProductID(i));
   }
 
   buyProduct(i:number) {
@@ -51,8 +46,8 @@ export default class ProductCard extends Vue {
     else return this.changeEnableNoProduct();
   }
 
-  checkProductQuantity(index:number) {
-    console.log(this.getProducts[index].quantity);
+  checkProductQuantity(ID:number) {
+    const index = this.getProducts.findIndex((obj) => obj.id === ID);
     if (this.getProducts[index].quantity > 0) return true; // eslint-disable-next-line
     else return false;
   }

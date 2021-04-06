@@ -2,12 +2,12 @@
 table.table-grid
   ul.flex
     li.flex(
-      v-for='(item, index) in getCatList',
+      v-for='(item, index) in maineCategory(getCategFlag)',
       :key='index')
       CategoryCard(
         :img='item.img'
         :title='item.title'
-        @click='$router.push({ name: "Products"})')
+        @click='$router.push({ name: "Products", params: { title: item.title }})')
 </template>
 
 <script lang="ts">
@@ -25,11 +25,18 @@ import { ProductCategories } from '@/types';
 export default class Category extends Vue {
   @Getter getCatList!: ProductCategories[];
 
-  @Getter getCatListGadgets!: ProductCategories[];
+  @Getter getCategFlag!: string;
 
-  // goToCategoryProducts(cat:string) {
-  //   return (this.$router.push({ name: "Products"}) && )
-  // }
+  maineCategory(cat:string) {
+    let result: any[] = [];
+    if (cat === 'gadgets' || cat === 'goods') {
+      this.getCatList.forEach((c) => {
+        if (c.cat === cat) (result.push(c));
+      });
+    } else (result = this.getCatList);
+    console.log(result);
+    return (result);
+  }
 }
 </script>
 

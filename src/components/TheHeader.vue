@@ -32,9 +32,9 @@ export default class TheHeader extends Vue {
 
   private links: Array<HeaderLinks> = [
     { title: 'Home', url: '/', exact: true },
-    { title: 'Category', url: 'category', exact: false },
-    { title: 'Products', url: 'products', exact: false },
-    { title: 'About', url: 'about', exact: false },
+    { title: 'Category', url: '/category', exact: false },
+    { title: 'AllProducts', url: '/products', exact: false },
+    { title: 'About', url: '/about', exact: false },
   ];
 }
 </script>

@@ -42,21 +42,21 @@ class newStore extends VuexModule {
 
   products: ProductsInterface[] = [];
 
-  totalPrice = 0;
+  CartlistTemp: ProductsInterface[] = [];
 
   breadListState = [
     { name: 'Home', path: '/' },
   ];
 
-  CategorieslistTemp = [];
+  cartErrors = [];
 
-  CartlistTemp: ProductsInterface[] = [];
+  totalPrice = 0;
 
   cartIndex = 0;
 
   categFlag = '';
 
-  currentProduct = 0;
+  currentProduct = 1;
 
   enableNoProduct = false;
 
@@ -69,8 +69,6 @@ class newStore extends VuexModule {
       deliveryMethod: '',
     },
   ]
-
-  cartErrors = [];
 
   get getEnableNoProduct(): boolean {
     return this.enableNoProduct;
@@ -96,36 +94,12 @@ class newStore extends VuexModule {
     return this.products;
   }
 
-  get getCatListGadgets(): any {
-    const result: { img: string; title: string; cat: string; }[] = [];
-    this.Categorieslist.forEach((cats) => {
-      if (cats.cat === 'gadgets') (result.push(cats));
-    });
-    return result;
+  get getCategFlag(): string {
+    return this.categFlag;
   }
 
-  get getCatListGoods(): any {
-    const result: { img: string; title: string; cat: string; }[] = [];
-    this.Categorieslist.forEach((cats) => {
-      if (cats.cat === 'goods') (result.push(cats));
-    });
-    return result;
-  }
-
-  // get getCategoryList(): any {
-  //   const result: { img: string; title: string; cat: string; }[] = [];
-  //   this.Categorieslist.forEach((cats) => {
-  //     if (cats.cat === category) (result.push(cats));
-  //   });
-  //   return result;
-  // }
-
-  get getCatList(): any {
-    let result: { img: string; title: string; cat: string; }[] = [];
-    if (this.categFlag === 'gadgets') (result = this.getCatListGadgets);
-    else if (this.categFlag === 'goods') (result = this.getCatListGoods);
-    else (result = this.Categorieslist);
-    return result;
+  get getCatList(): ProductCategories[] {
+    return this.Categorieslist;
   }
 
   get getOrderInfo(): OrderInfoInterface[] {
@@ -148,44 +122,57 @@ class newStore extends VuexModule {
     this.cartErrors = list;
   }
 
-  @mutation thisProductID(index:number) {
+  // @mutation thisProductID(productId:number) {
+  //   const index = this.products.findIndex((obj) => obj.id === productId);
+
+  //   this.currentProduct = index;
+  //   this.products[index].quantity -= 1;
+  //   this.totalPrice += this.products[index].price;
+  // }
+
+  @action async addProductToCart(index:number) {
+    this.getThisProductID(index);
+    this.cartTotalPrice(index);
+  }
+
+  @mutation getThisProductID(productId:number) {
+    const index = this.products.findIndex((obj) => obj.id === productId);
     this.currentProduct = index;
-    this.products[index].quantity -= 1;
-    this.totalPrice += this.products[index].price;
   }
 
   @mutation cartTotalPrice(index:number) {
     this.totalPrice += this.products[index].price;
   }
 
-  @mutation reduceProductsQuantity(index:number) {
-    this.products[index].quantity -= 1;
+  @mutation reduceProductsQuantity(productId:number) {
+    const index = this.products.findIndex((obj) => obj.id === productId);
+
+    // this.currentProduct = index;
+    this.products[this.products.findIndex((x) => x.id === productId)].quantity -= 1;
     this.totalPrice += this.products[index].price;
     this.CartlistTemp.push(this.products[index]); // delete this line in future
     this.cartIndex += 1;
   }
 
-  @mutation clearCartIndex(index:number) {
-    this.products[index].quantity += this.cartIndex;
+  @mutation clearCartIndex() {
+    this.CartlistTemp.forEach((v) => {
+      this.products[this.products.findIndex((x) => x.id === v.id)].quantity += 1;
+    });
     this.cartIndex = 0;
     this.totalPrice = 0;
     this.CartlistTemp = [];
   }
 
-  @mutation changecategFlagforGadgets() {
-    this.categFlag = 'gadgets';
-  }
-
-  @mutation changecategFlagforGoods() {
-    this.categFlag = 'goods';
+  @mutation changeCategFlag(cat:string) {
+    this.categFlag = cat;
   }
 
   @mutation resetCategFlag() {
     this.categFlag = '';
   }
 
-  @mutation addProductFromAPI(list:any) {
-    this.products = list;
+  @mutation addProductFromAPI(productList:any) {
+    this.products = productList;
   }
 
   @mutation addToCartlistTemp(i:any) {

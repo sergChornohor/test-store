@@ -1,19 +1,18 @@
 <template lang="pug">
-router-view(v-if='isNotProduct()')
-.product.flex.justify-content.flex-column(v-else)
+.product.flex.justify-content.flex-column
   .product-maine-info.flex.flex-column
     .product-name
-      h1 {{ getProducts[getID].name }}
+      h1 {{ findById(getID).name }}
     .product-info-container.flex
       .product-photo(
-        :style="{'background-image':'url('+require('../assets/img/'+getProducts[getID].image)+')'}")
+        :style="{'background-image':'url('+require('../assets/img/'+findById(getID).image)+')'}")
       .product-buying-info
         .product-price.flex.flex-center
           p price:
-          h2 {{ getProducts[getID].price }} $
+          h2 {{ findById(getID).price }} $
         .product-quantity.flex.flex-start
           p quantity:
-          h2 {{ getProducts[getID].quantity }}
+          h2 {{ findById(getID).quantity }}
         .buy-form.flex.align-center.space-between
           .btn.buy-btn(@click='buyProduct(getID)') buy
           .btn.cart-btn(@click='reduceProductsQuantity(getID)') add to cart
@@ -23,9 +22,9 @@ router-view(v-if='isNotProduct()')
   .product-description.flex
     .product-text
       .product-text-head.flex.align-center
-        h2 {{ getProducts[getID].name }} description
+        h2 {{ findById(getID).name }} description
       .product-text-body
-        p {{ getProducts[getID].description }}
+        p {{ findById(getID).description }}
     DeliveryInfo(v-if='enableDeliveryInfo'
       @close-window='enableDeliveryInfo = false')
     PayInfo(v-if='enablePayInfo'
@@ -51,6 +50,8 @@ export default class ProductView extends Vue {
 
   @Mutation reduceProductsQuantity: any;
 
+  @Mutation thisProductIDcart: any;
+
   @Getter getProducts!: ProductsInterface[];
 
   @Getter getID!: number;
@@ -59,11 +60,12 @@ export default class ProductView extends Vue {
 
   enablePayInfo = false;
 
-  isNotProduct() {
-    return this.$router.currentRoute.value.name !== 'Product';
+  findById(ID:number) {
+    return this.getProducts.find((x) => x.id === ID);
   }
 
   buyProduct(i:number) {
+    console.log(this.getID);
     return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
   }
 }

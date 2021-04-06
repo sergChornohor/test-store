@@ -2,44 +2,35 @@
 router-view(v-if='isNotHome()')
 .container.flex(v-else)
   .gadgets.ani-transition.flex.flex-center
-    .title-container.flex.flex-center(@click='goToGadgets()') Gadgets
+    .title-container.flex.flex-center(@click='goToCategory(gadgets)') Gadgets
   .goods.ani-transition.flex.flex-center
-    .title-container.flex.flex-center(@click='goToGoods()') Goods
+    .title-container.flex.flex-center(@click='goToCategory(goods)') Goods
 </template>
 
 <script lang="ts">
 import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
+import { ProductCategories } from '@/types';
 
 export default class MainePage extends Vue {
-  @Getter getCatListGadgets: any;
+  @Getter getCatList!: ProductCategories[];
 
-  @Mutation changecategFlagforGadgets: any;
+  @Mutation changeCategFlag: any;
 
-  @Mutation changecategFlagforGoods: any;
+  gadgets = 'gadgets';
+
+  goods = 'goods';
+
+  goToCategory(cat:string) {
+    return (this.pushRouteCat() && this.changeCategFlag(cat));
+  }
 
   isNotHome() {
     return this.$router.currentRoute.value.name !== 'Home';
   }
 
-  goToGadgets() {
-    return (this.pushRouteCat() && this.changeCatGadgents());
-  }
-
   pushRouteCat() {
     return this.$router.push({ name: 'Category' });
-  }
-
-  changeCatGadgents() {
-    return this.changecategFlagforGadgets();
-  }
-
-  changeCatGoods() {
-    return this.changecategFlagforGoods();
-  }
-
-  goToGoods() {
-    return (this.pushRouteCat() && this.changeCatGoods());
   }
 }
 </script>

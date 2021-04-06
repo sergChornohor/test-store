@@ -2,23 +2,20 @@
 .container
   ul.flex
       li.flex(
-        v-for='(item, index) in getProducts',
+        v-for='(item, index) in currentCategory($route.params.title)',
         :key='index')
         ProductCard(
-          :name = 'item.name'
-          :price = 'item.price'
-          :image = 'item.image'
-          :pr = 'index')
+          :pr = 'item.id')
   NoProduct(v-if='getEnableNoProduct'
     @window-close='chanheEnableNoProduct')
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Getter, Mutation } from 'vuex-class';
+import { Action, Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import NoProduct from '@/components/Modal/NoProduct.vue';
-import { ProductCategories, ProductsInterface } from '@/types';
+import { ProductsInterface } from '@/types';
 
 @Options({
   components: {
@@ -28,8 +25,6 @@ import { ProductCategories, ProductsInterface } from '@/types';
 })
 
 export default class Products extends Vue {
-  @Getter getCatList!: ProductCategories[];
-
   @Getter getProducts!: ProductsInterface[];
 
   @Getter getEnableNoProduct!: boolean;
@@ -40,13 +35,25 @@ export default class Products extends Vue {
 
   async beforeMount() {
     try {
-      await this.axios({ url: '/products', headers: { 'content-type': 'application/json', Accept: 'application/json' } })
+      const baseRoute = '/products';
+
+      await this.axios({ url: baseRoute, headers: { 'content-type': 'application/json', Accept: 'application/json' } })
         .then((response) => {
           this.addProductFromAPI(response.data);
         });
     } catch (error) {
       console.error(error);
     }
+  }
+
+  currentCategory(categ:string) {
+    let result: any[] = [];
+    if (categ !== undefined) {
+      this.getProducts.forEach((p) => {
+        if (p.category === categ) (result.push(p));
+      });
+    } else (result = this.getProducts);
+    return result;
   }
 }
 
