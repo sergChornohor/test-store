@@ -65,7 +65,6 @@ export default class ProductView extends Vue {
   }
 
   buyProduct(i:number) {
-    console.log(this.getID);
     return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
   }
 }

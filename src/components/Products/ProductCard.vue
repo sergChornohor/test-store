@@ -2,7 +2,7 @@
 .card.flex.flex-center.flex-column.ani-transition
   .img.flex.flex-center(
     :style="{'background-image':'url('+require('@/assets/img/'+findProductById(pr).image)+')'}"
-    @click='openProductCard(findProductById(pr).id+1)')
+    @click='openProductCard(getProducts[pr].id)')
   .description.flex
     .product-name
       h2 {{ findProductById(pr).name }}
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { Getter, Mutation } from 'vuex-class';
+import { Action, Getter, Mutation } from 'vuex-class';
 import { Prop } from 'vue-property-decorator';
 import { ProductsInterface } from '@/types';
 
@@ -26,7 +26,9 @@ export default class ProductCard extends Vue {
 
   @Mutation reduceProductsQuantity: any;
 
-  @Mutation thisProductID: any;
+  @Mutation getThisProductID: any;
+
+  @Action addProductToCart: any;
 
   @Mutation addToCartlistTemp: any;
 
@@ -37,7 +39,7 @@ export default class ProductCard extends Vue {
   }
 
   openProductCard(i:number) {
-    return (this.$router.push({ name: 'ProductDetail', params: { id: i } }) && this.thisProductID(i));
+    return (this.$router.push({ name: 'ProductDetail', params: { id: i } }) && this.getThisProductID(i));
   }
 
   buyProduct(i:number) {

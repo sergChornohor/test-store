@@ -34,7 +34,6 @@ export default class Category extends Vue {
         if (c.cat === cat) (result.push(c));
       });
     } else (result = this.getCatList);
-    console.log(result);
     return (result);
   }
 }

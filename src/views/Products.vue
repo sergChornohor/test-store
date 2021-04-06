@@ -47,7 +47,7 @@ export default class Products extends Vue {
   }
 
   currentCategory(categ:string) {
-    let result: any[] = [];
+    let result: ProductsInterface[] = [];
     if (categ !== undefined) {
       this.getProducts.forEach((p) => {
         if (p.category === categ) (result.push(p));

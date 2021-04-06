@@ -1,5 +1,5 @@
 <template lang="pug">
-.card.flex.flex-center.ani-transition(@click='openProductCard(id+1)')
+.card.flex.flex-center.ani-transition(@click='openProductCard(id)')
   .img.flex.flex-center(
     :style="{'background-image':'url('+require('../../assets/img/'+image)+')'}")
   .description.flex
