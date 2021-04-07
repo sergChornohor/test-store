@@ -26,8 +26,8 @@ export interface ProductsInterface{
 }
 
 export interface OrderInfoInterface{
-    firstName: string,
-    secondName: string,
+    fullName: string,
+    homeAddress: string,
     phoneNumber: number,
     payMethod: string,
     deliveryMethod: string,

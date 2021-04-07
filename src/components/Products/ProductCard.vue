@@ -50,6 +50,7 @@ export default class ProductCard extends Vue {
 
   checkProductQuantity(ID:number) {
     const index = this.getProducts.findIndex((obj) => obj.id === ID);
+    console.log(this.getProducts[index].quantity);
     if (this.getProducts[index].quantity > 0) return true; // eslint-disable-next-line
     else return false;
   }

@@ -1,5 +1,5 @@
 <template lang="pug">
-.card.flex.flex-center.ani-transition(@click='openProductCard(id)')
+.card.flex.flex-center.ani-transition(@click='openProductCard(getProducts[id].id)')
   .img.flex.flex-center(
     :style="{'background-image':'url('+require('../../assets/img/'+image)+')'}")
   .description.flex
@@ -28,10 +28,12 @@ export default class CartProduct extends Vue {
 
   @Getter getProducts!: ProductsInterface[];
 
+  @Mutation getThisProductID!: any;
+
   @Action addProductToCart: any;
 
   openProductCard(i:number) {
-    return (this.$router.push({ name: 'ProductDetail', params: { id: i } }) && this.addProductToCart(i));
+    return (this.$router.push({ name: 'ProductDetail', params: { id: i } }) && this.getThisProductID(i));
   }
 }
 </script>

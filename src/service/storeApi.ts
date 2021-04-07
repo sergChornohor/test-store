@@ -8,8 +8,8 @@ export default class storeApi {
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }
 
-  static addTask(task: OrderInfoInterface) {
-    return axiosConfig.post('/orders', task)
+  static addOrder(order: OrderInfoInterface) {
+    return axiosConfig.post('/orders', order)
       .then((response: any) => response.data.status === 'ok')
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }

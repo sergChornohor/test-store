@@ -1,4 +1,5 @@
 import Vuex from 'vuex';
+import storeApi from '@/service/storeApi';
 import {
   createModule, action, mutation, extractVuexModule, createProxy,
 } from 'vuex-class-component';
@@ -56,19 +57,36 @@ class newStore extends VuexModule {
 
   categFlag = '';
 
-  currentProduct = 1;
+  currentProduct = 0;
 
   enableNoProduct = false;
 
-  orderInfo = [
+  orderInfo =
     {
-      firstName: '',
-      secondName: '',
+      fullName: '',
+      homeAddress: '',
       phoneNumber: 380,
       payMethod: '',
       deliveryMethod: '',
-    },
-  ]
+    }
+
+  @mutation addOrder(thisOrder:any) {
+    this.orderInfo = thisOrder;
+  }
+
+  @action async pushOrder(order:any) {
+    if (await storeApi.addOrder(order).then((response) => response)) {
+      this.addOrder(order);
+    }
+  }
+
+  @mutation addProductFromAPI(productList:any) {
+    this.products = productList;
+  }
+
+  @action async getProductsAPI(productList:any) {
+    this.addProductFromAPI(await storeApi.getProducts().then((response) => response.data));
+  }
 
   get getEnableNoProduct(): boolean {
     return this.enableNoProduct;
@@ -102,7 +120,7 @@ class newStore extends VuexModule {
     return this.Categorieslist;
   }
 
-  get getOrderInfo(): OrderInfoInterface[] {
+  get getOrderInfo(): OrderInfoInterface {
     return this.orderInfo;
   }
 
@@ -122,19 +140,6 @@ class newStore extends VuexModule {
     this.cartErrors = list;
   }
 
-  // @mutation thisProductID(productId:number) {
-  //   const index = this.products.findIndex((obj) => obj.id === productId);
-
-  //   this.currentProduct = index;
-  //   this.products[index].quantity -= 1;
-  //   this.totalPrice += this.products[index].price;
-  // }
-
-  @action async addProductToCart(index:number) {
-    this.getThisProductID(index);
-    this.cartTotalPrice(index);
-  }
-
   @mutation getThisProductID(productId:number) {
     const index = this.products.findIndex((obj) => obj.id === productId);
     this.currentProduct = index;
@@ -144,6 +149,23 @@ class newStore extends VuexModule {
     this.totalPrice += this.products[index].price;
   }
 
+  @mutation plusCartIndex() {
+    this.cartIndex += 1;
+  }
+
+  @action async addProductToCart(index:number) {
+    this.getThisProductID(index);
+    this.cartTotalPrice(index);
+  }
+
+  // @action async reduceProductsQuantity(productId:number) {
+  //   const index = this.products.findIndex((obj) => obj.id === productId);
+  //   // this.getThisProductID(index);
+  //   this.cartTotalPrice(index); // eslint-disable-next-line
+  //   this.plusCartIndex;
+  //   this.addToCartlistTemp(index);
+  // }
+
   @mutation reduceProductsQuantity(productId:number) {
     const index = this.products.findIndex((obj) => obj.id === productId);
 
@@ -152,6 +174,10 @@ class newStore extends VuexModule {
     this.totalPrice += this.products[index].price;
     this.CartlistTemp.push(this.products[index]); // delete this line in future
     this.cartIndex += 1;
+  }
+
+  @mutation reduceProductQuantity(productId:number) {
+    this.products[this.products.findIndex((x) => x.id === productId)].quantity -= 1;
   }
 
   @mutation clearCartIndex() {
@@ -169,10 +195,6 @@ class newStore extends VuexModule {
 
   @mutation resetCategFlag() {
     this.categFlag = '';
-  }
-
-  @mutation addProductFromAPI(productList:any) {
-    this.products = productList;
   }
 
   @mutation addToCartlistTemp(i:any) {

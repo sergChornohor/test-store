@@ -29,6 +29,8 @@
       @close-window='enableDeliveryInfo = false')
     PayInfo(v-if='enablePayInfo'
       @close-window='enablePayInfo = false')
+    NoProduct(v-if='getEnableNoProduct'
+    @window-close='changeEnableNoProduct')
 </template>
 
 <script lang="ts">
@@ -46,11 +48,13 @@ import { ProductsInterface } from '../types';
 })
 
 export default class ProductView extends Vue {
+  @Getter getEnableNoProduct!: boolean;
+
+  @Mutation changeEnableNoProduct:any;
+
   @Mutation changeCartIndex: any;
 
   @Mutation reduceProductsQuantity: any;
-
-  @Mutation thisProductIDcart: any;
 
   @Getter getProducts!: ProductsInterface[];
 
@@ -64,8 +68,21 @@ export default class ProductView extends Vue {
     return this.getProducts.find((x) => x.id === ID);
   }
 
+  // buyProduct(i:number) {
+  //   return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+  // }
+
   buyProduct(i:number) {
-    return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    // eslint-disable-next-line
+    else return this.changeEnableNoProduct();
+  }
+
+  checkProductQuantity(ID:number) {
+    const index = this.getProducts.findIndex((obj) => obj.id === ID);
+    console.log(this.getProducts[index].quantity);
+    if (this.getProducts[index].quantity > 0) return true; // eslint-disable-next-line
+    else return false;
   }
 }
 

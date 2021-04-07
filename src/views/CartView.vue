@@ -10,17 +10,17 @@
           @submit.prevent='checkForm()'
           method='post')
           label(for='fulleName') Full Name
-          input(type='text', name='fullName', v-model='fullName', id='fullName')
+          input(type='text', name='fullName', v-model='thisOrder.fullName', id='fullName')
           label(for='phoneNumber') Phone Number
-          input(type='number', name='phoneNumber', v-model='phoneNumber', id='phoneNumber')
+          input(type='number', name='phoneNumber', v-model='thisOrder.phoneNumber',id='phoneNumber')
           label(for='homeAddress') Home Address
-          input(type='text', name='homeAddress', v-model='homeAddress', id='homeAddress')
+          input(type='text', name='homeAddress', v-model='thisOrder.homeAddress', id='homeAddress')
           label(for='paymentMethod') Paymment Method
-          select(name='paymentMethod' v-model='paymentMethod', id='paymentMethod')
+          select(name='paymentMethod' v-model='thisOrder.paymentMethod', id='paymentMethod')
             option(value='cash') Cash
             option(value='creditCart') Credit Cart
           label(for='deliveryMethod') Delivery Method
-          select(name='deliveryMethod', v-model='deliveryMethod', id='deliveryMethod')
+          select(name='deliveryMethod', v-model='thisOrder.deliveryMethod', id='deliveryMethod')
             option(value='Novaposhta') Nova Poshta
             option(value='MistExpress') Mist Express
       .cart-product.flex.flex-column.space-between(v-if='getTotalPrice != 0')
@@ -44,13 +44,13 @@
 </template>
 
 <script lang="ts">
-import { Getter, Mutation } from 'vuex-class';
+import { Action, Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
 import CartErrors from '@/components/Modal/CartErrors.vue';
 import CartProduct from '@/components/Products/CartProduct.vue';
-import { ProductsInterface } from '@/types';
+import { ProductsInterface, OrderInfoInterface } from '@/types';
 
 @Options({
   components: {
@@ -64,15 +64,13 @@ import { ProductsInterface } from '@/types';
 export default class CartView extends Vue {
   formErrors: any[] = [];
 
-  fullName = null;
-
-  phoneNumber = null;
-
-  homeAddress = '';
-
-  paymentMethod = null;
-
-  deliveryMethod = null;
+  thisOrder = {
+    fullName: '',
+    phoneNumber: 380,
+    homeAddress: '',
+    paymentMethod: '',
+    deliveryMethod: '',
+  };
 
   enableOrderConfirm = false;
 
@@ -86,9 +84,15 @@ export default class CartView extends Vue {
 
   @Getter getCartErrors:any;
 
+  @Getter getOrderInfo:any;
+
   @Mutation clearCartIndex:any;
 
   @Mutation setCartErrors:any;
+
+  @Mutation addOrder!: any;
+
+  @Action pushOrder:any;
 
   confirmOdrer() { // eslint-disable-next-line
     return this.enableOrderConfirm = !this.enableOrderConfirm;
@@ -96,19 +100,19 @@ export default class CartView extends Vue {
 
   checkForm() {
     this.formErrors = [];
-    if (!this.fullName) {
+    if (!this.thisOrder.fullName) {
       this.formErrors.push('Fill the Full Name fild!');
     }
-    if (!this.phoneNumber) {
+    if (!this.thisOrder.phoneNumber) {
       this.formErrors.push('Fill the Phone Number fild!');
     }
-    if (!this.homeAddress) {
+    if (!this.thisOrder.homeAddress) {
       this.formErrors.push('Fill the Home Address fild!');
     }
-    if (!this.paymentMethod) {
+    if (!this.thisOrder.paymentMethod) {
       this.formErrors.push('Fill the Payment Method fild!');
     }
-    if (!this.deliveryMethod) {
+    if (!this.thisOrder.deliveryMethod) {
       this.formErrors.push('Fill the Delivery Method fild!');
     }
     if (this.formErrors.length) {
@@ -118,6 +122,9 @@ export default class CartView extends Vue {
     } else { // eslint-disable-next-line
       this.enableOrderConfirm = !this.enableOrderConfirm;
     }
+    // this.addOrder(this.thisOrder);
+    this.pushOrder(this.thisOrder);
+    console.log(this.getOrderInfo);
     return this.enableOrderConfirm;
   }
 }

@@ -7,7 +7,7 @@
         ProductCard(
           :pr = 'item.id')
   NoProduct(v-if='getEnableNoProduct'
-    @window-close='chanheEnableNoProduct')
+    @window-close='changeEnableNoProduct')
 </template>
 
 <script lang="ts">
@@ -16,6 +16,7 @@ import { Action, Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import NoProduct from '@/components/Modal/NoProduct.vue';
 import { ProductsInterface } from '@/types';
+import axiosConfig from '@/service/api';
 
 @Options({
   components: {
@@ -29,7 +30,7 @@ export default class Products extends Vue {
 
   @Getter getEnableNoProduct!: boolean;
 
-  @Mutation chanheEnableNoProduct:any;
+  @Mutation changeEnableNoProduct:any;
 
   @Mutation addProductFromAPI:any;
 
@@ -37,7 +38,7 @@ export default class Products extends Vue {
     try {
       const baseRoute = '/products';
 
-      await this.axios({ url: baseRoute, headers: { 'content-type': 'application/json', Accept: 'application/json' } })
+      await axiosConfig({ url: baseRoute, headers: { 'content-type': 'application/json', Accept: 'application/json' } })
         .then((response) => {
           this.addProductFromAPI(response.data);
         });
