@@ -84,8 +84,6 @@ export default class CartView extends Vue {
 
   @Getter getCartErrors:any;
 
-  @Getter getOrderInfo:any;
-
   @Mutation clearCartIndex:any;
 
   @Mutation setCartErrors:any;
@@ -124,7 +122,6 @@ export default class CartView extends Vue {
     }
     // this.addOrder(this.thisOrder);
     this.pushOrder(this.thisOrder);
-    console.log(this.getOrderInfo);
     return this.enableOrderConfirm;
   }
 }

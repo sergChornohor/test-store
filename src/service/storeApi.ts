@@ -1,4 +1,4 @@
-import { OrderInfoInterface } from '@/types';
+import { OrderInfoInterface, ProductsInterface } from '@/types';
 import axiosConfig from './api';
 
 export default class storeApi {
@@ -14,15 +14,9 @@ export default class storeApi {
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }
 
-  // static editTask(payload: any) {
-  //   return axiosConfig.put('/tasks', { payload: { task: payload.task, index: payload.index } })
-  //     .then((response: any) => response.data.status === 'ok')
-  //     .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
-  // }
-
-  // static deleteTask(index: number) {
-  //   return axiosConfig.delete('/tasks', { data: { index } })
-  //     .then((response: any) => response.data.status === 'ok')
-  //     .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
-  // }
+  static updateQuantity(product: ProductsInterface) {
+    return axiosConfig.put('/products', product.quantity)
+      .then((response: any) => response.data.status === 'ok')
+      .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
+  }
 }

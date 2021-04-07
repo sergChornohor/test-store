@@ -52,8 +52,6 @@ export default class ProductView extends Vue {
 
   @Mutation changeEnableNoProduct:any;
 
-  @Mutation changeCartIndex: any;
-
   @Mutation reduceProductsQuantity: any;
 
   @Getter getProducts!: ProductsInterface[];
@@ -67,10 +65,6 @@ export default class ProductView extends Vue {
   findById(ID:number) {
     return this.getProducts.find((x) => x.id === ID);
   }
-
-  // buyProduct(i:number) {
-  //   return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
-  // }
 
   buyProduct(i:number) {
     if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));

@@ -8,6 +8,7 @@ import { ProductCategories, ProductsInterface, OrderInfoInterface } from '../typ
 const VuexModule = createModule();
 
 class newStore extends VuexModule {
+// CATEGORY
   Categorieslist = [
     {
       img: 'camera.png',
@@ -41,25 +42,25 @@ class newStore extends VuexModule {
     },
   ];
 
-  products: ProductsInterface[] = [];
-
-  CartlistTemp: ProductsInterface[] = [];
-
-  breadListState = [
-    { name: 'Home', path: '/' },
-  ];
-
-  cartErrors = [];
-
-  totalPrice = 0;
-
-  cartIndex = 0;
-
   categFlag = '';
 
-  currentProduct = 0;
+  get getCategFlag(): string {
+    return this.categFlag;
+  }
 
-  enableNoProduct = false;
+  get getCatList(): ProductCategories[] {
+    return this.Categorieslist;
+  }
+
+  @mutation changeCategFlag(cat:string) {
+    this.categFlag = cat;
+  }
+
+  @mutation resetCategFlag() {
+    this.categFlag = '';
+  }
+
+  // ORDERS
 
   orderInfo =
     {
@@ -69,6 +70,10 @@ class newStore extends VuexModule {
       payMethod: '',
       deliveryMethod: '',
     }
+
+  get getOrderInfo(): OrderInfoInterface {
+    return this.orderInfo;
+  }
 
   @mutation addOrder(thisOrder:any) {
     this.orderInfo = thisOrder;
@@ -80,6 +85,26 @@ class newStore extends VuexModule {
     }
   }
 
+  // PRODUCTS
+
+  products: ProductsInterface[] = [];
+
+  currentProduct = 0;
+
+  enableNoProduct = false;
+
+  get getProducts(): ProductsInterface[] {
+    return this.products;
+  }
+
+  get getEnableNoProduct(): boolean {
+    return this.enableNoProduct;
+  }
+
+  get getID(): any {
+    return this.currentProduct;
+  }
+
   @mutation addProductFromAPI(productList:any) {
     this.products = productList;
   }
@@ -88,9 +113,39 @@ class newStore extends VuexModule {
     this.addProductFromAPI(await storeApi.getProducts().then((response) => response.data));
   }
 
-  get getEnableNoProduct(): boolean {
-    return this.enableNoProduct;
+  @mutation getThisProductID(productId:number) {
+    const index = this.products.findIndex((obj) => obj.id === productId);
+    this.currentProduct = index;
   }
+
+  @action async addProductToCart(index:number) {
+    this.getThisProductID(index);
+    this.cartTotalPrice(index);
+  }
+
+  @mutation reduceProductQuantity(productId:number) {
+    this.products[this.products.findIndex((x) => x.id === productId)].quantity -= 1;
+  }
+
+  @mutation changeEnableNoProduct() {
+    this.enableNoProduct = !this.enableNoProduct;
+  }
+
+  @action async setProductQuantity(product:ProductsInterface) {
+    if (await storeApi.updateQuantity(product).then((response) => response)) {
+      this.reduceProductQuantity(product.id);
+    }
+  }
+
+  // CART
+
+  CartlistTemp: ProductsInterface[] = [];
+
+  cartErrors = [];
+
+  totalPrice = 0;
+
+  cartIndex = 0;
 
   get getCartErrors(): any[] {
     return this.cartErrors;
@@ -98,6 +153,10 @@ class newStore extends VuexModule {
 
   get getCartlistTemp(): ProductsInterface[] {
     return this.CartlistTemp;
+  }
+
+  get getTotalPrice(): number {
+    return this.totalPrice;
   }
 
   get getCatListFull(): ProductCategories[] {
@@ -108,41 +167,12 @@ class newStore extends VuexModule {
     return this.cartIndex;
   }
 
-  get getProducts(): ProductsInterface[] {
-    return this.products;
-  }
-
-  get getCategFlag(): string {
-    return this.categFlag;
-  }
-
-  get getCatList(): ProductCategories[] {
-    return this.Categorieslist;
-  }
-
-  get getOrderInfo(): OrderInfoInterface {
-    return this.orderInfo;
-  }
-
-  get getTotalPrice(): number {
-    return this.totalPrice;
-  }
-
-  get getID(): any {
-    return this.currentProduct;
-  }
-
-  @mutation changeEnableNoProduct() {
-    this.enableNoProduct = !this.enableNoProduct;
+  @mutation addToCartlistTemp(i:any) {
+    this.CartlistTemp.push(this.products[i]);
   }
 
   @mutation setCartErrors(list:any) {
     this.cartErrors = list;
-  }
-
-  @mutation getThisProductID(productId:number) {
-    const index = this.products.findIndex((obj) => obj.id === productId);
-    this.currentProduct = index;
   }
 
   @mutation cartTotalPrice(index:number) {
@@ -153,10 +183,20 @@ class newStore extends VuexModule {
     this.cartIndex += 1;
   }
 
-  @action async addProductToCart(index:number) {
-    this.getThisProductID(index);
-    this.cartTotalPrice(index);
+  @mutation clearCartIndex() {
+    this.CartlistTemp.forEach((v) => {
+      this.products[this.products.findIndex((x) => x.id === v.id)].quantity += 1;
+    });
+    this.cartIndex = 0;
+    this.totalPrice = 0;
+    this.CartlistTemp = [];
   }
+
+  // OTHER
+
+  breadListState = [
+    { name: 'Home', path: '/' },
+  ];
 
   // @action async reduceProductsQuantity(productId:number) {
   //   const index = this.products.findIndex((obj) => obj.id === productId);
@@ -174,31 +214,6 @@ class newStore extends VuexModule {
     this.totalPrice += this.products[index].price;
     this.CartlistTemp.push(this.products[index]); // delete this line in future
     this.cartIndex += 1;
-  }
-
-  @mutation reduceProductQuantity(productId:number) {
-    this.products[this.products.findIndex((x) => x.id === productId)].quantity -= 1;
-  }
-
-  @mutation clearCartIndex() {
-    this.CartlistTemp.forEach((v) => {
-      this.products[this.products.findIndex((x) => x.id === v.id)].quantity += 1;
-    });
-    this.cartIndex = 0;
-    this.totalPrice = 0;
-    this.CartlistTemp = [];
-  }
-
-  @mutation changeCategFlag(cat:string) {
-    this.categFlag = cat;
-  }
-
-  @mutation resetCategFlag() {
-    this.categFlag = '';
-  }
-
-  @mutation addToCartlistTemp(i:any) {
-    this.CartlistTemp.push(this.products[i]);
   }
 }
 const store = new Vuex.Store({
