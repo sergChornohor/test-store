@@ -138,6 +138,17 @@ export default class ProductView extends Vue {
         @include mq('phone-wide'){
           padding-left: 20px;
         }}
+      .buy-form{
+        @include mq('tablet-wide'){
+          padding: 20px;
+        }
+        @include mq('tablet'){
+          padding: 10px;
+        }
+        @include mq('phone-wide'){
+          padding: 10px;
+        }
+      }
       .payment-delivery{
         height: 40px;
         padding: 10px 100px;
