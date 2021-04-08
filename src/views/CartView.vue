@@ -51,7 +51,6 @@ import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
 import CartErrors from '@/components/Modal/CartErrors.vue';
 import CartProduct from '@/components/Products/CartProduct.vue';
 import { ProductsInterface, OrderInfoInterface } from '@/types';
-import axiosConfig from '@/service/api';
 
 @Options({
   components: {

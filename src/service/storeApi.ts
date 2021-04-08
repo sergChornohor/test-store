@@ -9,7 +9,10 @@ export default class storeApi {
   }
 
   static addOrder(order: OrderInfoInterface) {
-    return axiosConfig.post('/orders', order)
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    return axiosConfig.post('/orders', order, { headers })
       .then((response: any) => response.data.status === 'ok')
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }
