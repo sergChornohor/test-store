@@ -109,8 +109,8 @@ class newStore extends VuexModule {
     this.products = productList;
   }
 
-  @action async getProductsAPI(productList:any) {
-    this.addProductFromAPI(await storeApi.getProducts().then((response) => response.data));
+  @action async getProductsAPI() {
+    this.addProductFromAPI(await storeApi.getProducts().then((response) => response));
   }
 
   @mutation getThisProductID(productId:number) {
@@ -223,3 +223,7 @@ const store = new Vuex.Store({
 });
 
 export default store;
+
+const vxm = {
+  user: createProxy(store, newStore),
+};

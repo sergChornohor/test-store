@@ -34,17 +34,10 @@ export default class Products extends Vue {
 
   @Mutation addProductFromAPI:any;
 
-  async beforeMount() {
-    try {
-      const baseRoute = '/products';
+  @Action getProductsAPI:any;
 
-      await axiosConfig({ url: baseRoute, headers: { 'content-type': 'application/json', Accept: 'application/json' } })
-        .then((response) => {
-          this.addProductFromAPI(response.data);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+  beforeMount() {
+    this.getProductsAPI();
   }
 
   currentCategory(categ:string) {

@@ -51,6 +51,7 @@ import OrderConfirm from '@/components/Modal/OrderConfirm.vue';
 import CartErrors from '@/components/Modal/CartErrors.vue';
 import CartProduct from '@/components/Products/CartProduct.vue';
 import { ProductsInterface, OrderInfoInterface } from '@/types';
+import axiosConfig from '@/service/api';
 
 @Options({
   components: {
@@ -118,10 +119,13 @@ export default class CartView extends Vue {
       console.log(this.getCartErrors); // eslint-disable-next-line
       this.enableCartErrors = !this.enableCartErrors;
     } else { // eslint-disable-next-line
+      this.setCartErrors([]);
       this.enableOrderConfirm = !this.enableOrderConfirm;
     }
     // this.addOrder(this.thisOrder);
-    this.pushOrder(this.thisOrder);
+    if (this.getCartErrors.length === 0) {
+      this.pushOrder(this.thisOrder);
+    }
     return this.enableOrderConfirm;
   }
 }
