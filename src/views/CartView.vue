@@ -118,8 +118,8 @@ export default class CartView extends Vue {
       this.setCartErrors(this.formErrors);
       console.log(this.getCartErrors); // eslint-disable-next-line
       this.enableCartErrors = !this.enableCartErrors;
-    } else { // eslint-disable-next-line
-      this.setCartErrors([]);
+    } else {
+      this.setCartErrors([]); // eslint-disable-next-line
       this.enableOrderConfirm = !this.enableOrderConfirm;
     }
     // this.addOrder(this.thisOrder);
