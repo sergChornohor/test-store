@@ -7,7 +7,7 @@
         ProductCard(
           :pr = 'item.id')
   NoProduct(v-if='getEnableNoProduct'
-    @window-close='changeEnableNoProduct')
+    @close-window='changeEnableNoProduct')
 </template>
 
 <script lang="ts">
@@ -16,7 +16,6 @@ import { Action, Getter, Mutation } from 'vuex-class';
 import ProductCard from '@/components/Products/ProductCard.vue';
 import NoProduct from '@/components/Modal/NoProduct.vue';
 import { ProductsInterface } from '@/types';
-import axiosConfig from '@/service/api';
 
 @Options({
   components: {

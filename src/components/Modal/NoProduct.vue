@@ -3,7 +3,7 @@
   @keyup.esc="$emit('close-window')"
   @click.self="$emit('close-window')")
   .modal-content-wrapper
-    .modal-content.flex-column
+    .modal-content.flex-column.flex-center
       .product-name
         h2 Sorry
       .text-info

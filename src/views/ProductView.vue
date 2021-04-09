@@ -15,7 +15,7 @@
           h2 {{ findById(getID).quantity }}
         .buy-form.cart-buy.flex.align-center.space-between
           .btn.buy-btn(@click='buyProduct(getID)') buy
-          .btn.cart-btn(@click='reduceProductsQuantity(getID)') add to cart
+          .btn.cart-btn(@click='cartProduct(getID)') add to cart
         .payment-delivery.flex.space-between.align-center
           .link(@click='enableDeliveryInfo=!enableDeliveryInfo') delivery
           .link(@click='enablePayInfo=!enablePayInfo') payment
@@ -30,20 +30,22 @@
     PayInfo(v-if='enablePayInfo'
       @close-window='enablePayInfo = false')
     NoProduct(v-if='getEnableNoProduct'
-    @window-close='changeEnableNoProduct')
+    @close-window='changeEnableNoProduct()')
 </template>
 
 <script lang="ts">
 import { Getter, Mutation } from 'vuex-class';
 import { Options, Vue } from 'vue-class-component';
-import DeliveryInfo from '../components/Modal/DeliveryInfo.vue';
-import PayInfo from '../components/Modal/PayInfo.vue';
+import DeliveryInfo from '@/components/Modal/DeliveryInfo.vue';
+import PayInfo from '@/components/Modal/PayInfo.vue';
+import NoProduct from '@/components/Modal/NoProduct.vue';
 import { ProductsInterface } from '../types';
 
 @Options({
   components: {
     DeliveryInfo,
     PayInfo,
+    NoProduct,
   },
 })
 
@@ -68,6 +70,12 @@ export default class ProductView extends Vue {
 
   buyProduct(i:number) {
     if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    // eslint-disable-next-line
+    else return this.changeEnableNoProduct();
+  }
+
+  cartProduct(i:number) {
+    if (this.checkProductQuantity(i)) return this.reduceProductsQuantity(i);
     // eslint-disable-next-line
     else return this.changeEnableNoProduct();
   }

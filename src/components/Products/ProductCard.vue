@@ -10,7 +10,7 @@
       h1 {{ findProductById(pr).price }} $
   .buy-form.product-cart-buy-form.flex.space-between.align-center
     .btn.buy-btn(@click='buyProduct(pr)') buy
-    .btn.cart-btn(@click='reduceProductsQuantity(pr)') add to cart
+    .btn.cart-btn(@click='cartProduct(pr)') add to cart
 </template>
 
 <script lang="ts">
@@ -44,6 +44,12 @@ export default class ProductCard extends Vue {
 
   buyProduct(i:number) {
     if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
+    // eslint-disable-next-line
+    else return this.changeEnableNoProduct();
+  }
+
+  cartProduct(i:number) {
+    if (this.checkProductQuantity(i)) return this.reduceProductsQuantity(i);
     // eslint-disable-next-line
     else return this.changeEnableNoProduct();
   }
