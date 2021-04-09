@@ -27,6 +27,7 @@ export default class Category extends Vue {
 .store-name{
   width: 50%;
   height: 100px;
+  margin-bottom: 20px;
   h1{
     font-size: 3em;
     color: brown;}
@@ -34,8 +35,14 @@ export default class Category extends Vue {
 .some-text{
   width: 70%;
   height: 500px;
+  @include mq('tablet'){
+    width: 80%;
+  }
+  @include mq('phone-wide'){
+    width: 90%;
+  }
   p{
-    text-align: left;
+    text-align: justify;
     font-size: 1.6em;}
   }
 </style>

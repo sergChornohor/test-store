@@ -13,7 +13,7 @@
         .product-quantity.flex.flex-start
           p quantity:
           h2 {{ findById(getID).quantity }}
-        .buy-form.flex.align-center.space-between
+        .buy-form.cart-buy.flex.align-center.space-between
           .btn.buy-btn(@click='buyProduct(getID)') buy
           .btn.cart-btn(@click='reduceProductsQuantity(getID)') add to cart
         .payment-delivery.flex.space-between.align-center
@@ -101,15 +101,23 @@ export default class ProductView extends Vue {
         text-align: center;
         font-size: 2em;
         color: $black-color;}
+    .product-info-container{
+      @include mq('phone-wide'){
+        flex-direction: column; }
+    }
     .product-photo{
       width: 50%;
       height: 400px;
       background-image: url('../assets/img/mobile.png');
       background-size: contain;
-      background-repeat: no-repeat;}
+      background-repeat: no-repeat;
+      @include mq('phone-wide'){
+        width: 100%; }}
     .product-buying-info{
       width: 50%;
-      padding: 20px;}
+      padding: 20px;
+      @include mq('phone-wide'){
+        width: 100%; }}
       .product-price{
         width: 100%;
         height: 70px;
@@ -138,15 +146,19 @@ export default class ProductView extends Vue {
         @include mq('phone-wide'){
           padding-left: 20px;
         }}
-      .buy-form{
+      .cart-buy{
         @include mq('tablet-wide'){
           padding: 20px;
         }
         @include mq('tablet'){
+          height: 140px;
           padding: 10px;
+          flex-direction: column;
         }
         @include mq('phone-wide'){
+          height: 80px;
           padding: 10px;
+          flex-direction: row;
         }
       }
       .payment-delivery{
@@ -160,8 +172,8 @@ export default class ProductView extends Vue {
           flex-direction: column;
         }
         @include mq('phone-wide'){
-          padding: 10px 20px;
-          flex-direction: column;
+          padding: 10px 40px;
+          flex-direction: row;
         }}
         .link{
           height: 100%;
@@ -170,10 +182,7 @@ export default class ProductView extends Vue {
           text-align: center;
           @include mq('tablet'){
             padding: 10px;
-          }
-          @include mq('phone-wide'){
-            padding: 10px;
-        }}
+          }}
         .link:hover{
           color: $dark-blue-color;}
   .product-description{

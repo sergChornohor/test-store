@@ -65,6 +65,9 @@ table{
   ul{
     width: 100%;
     flex-wrap: wrap;
+    @include mq('tablet-wide'){
+      @include justify-content(center);
+    }
     @include mq('tablet'){
       @include justify-content(center);
     }
@@ -80,6 +83,7 @@ table{
         width: 240px;
         height: 240px;
         margin: 10px;
-      }}
+      }
+      }
   }
 </style>
