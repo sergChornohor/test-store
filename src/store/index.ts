@@ -131,9 +131,10 @@ class newStore extends VuexModule {
     this.enableNoProduct = !this.enableNoProduct;
   }
 
-  @action async setProductQuantity(product:ProductsInterface) {
-    if (await storeApi.updateQuantity(product).then((response) => response)) {
-      this.reduceProductQuantity(product.id);
+  @action async setProductQuantity(index:number) {
+    if (await storeApi.updateQuantity(this.getProducts[this.currentProduct])
+      .then((response) => response)) {
+      this.reduceProductQuantity(index);
     }
   }
 
