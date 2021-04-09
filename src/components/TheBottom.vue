@@ -3,7 +3,7 @@
   .bottom-info
     h3
   .bottom-copyrights
-    p All copyright reseived 2021
+    p All copyright received 2021
 </template>
 
 <script lang="ts">

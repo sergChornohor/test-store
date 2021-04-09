@@ -14,16 +14,15 @@ const routes = [
     meta: { breadCrumbs: [{ to: 'main', text: '/' }] },
   },
   {
-    path: '/category',
+    path: '/category/',
     name: 'Category',
     component: Category,
     meta: { breadCrumbs: [{ to: '/category', text: 'categories' }] },
     children: [
       {
-        path: '/gadgets',
-        name: 'Gadgets',
+        path: ':cat',
         component: Category,
-        meta: { breadCrumbs: [{ to: '/gadgets', text: 'gadgets' }] },
+        props: true,
       },
     ],
   },

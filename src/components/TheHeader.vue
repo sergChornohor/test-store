@@ -16,8 +16,8 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Getter, Mutation } from 'vuex-class';
+import { HeaderLinks, breadCrumbsListInterface } from '@/types';
 import BreadCrumbs from './Breadcrumbs.vue';
-import { HeaderLinks, breadCrumbsListInterface } from '../types';
 
  @Options({
    components: {

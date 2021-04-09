@@ -18,7 +18,7 @@ export default class storeApi {
   }
 
   static updateQuantity(product: ProductsInterface) {
-    return axiosConfig.put('/products', product.quantity)
+    return axiosConfig.put('/products/{id}', product.quantity)
       .then((response: any) => response.data.status === 'ok')
       .catch((error: any) => (console.log(`...\n got an error \n...\n${error}`)));
   }

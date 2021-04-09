@@ -39,7 +39,7 @@ import { Options, Vue } from 'vue-class-component';
 import DeliveryInfo from '@/components/Modal/DeliveryInfo.vue';
 import PayInfo from '@/components/Modal/PayInfo.vue';
 import NoProduct from '@/components/Modal/NoProduct.vue';
-import { ProductsInterface } from '../types';
+import { ProductsInterface } from '@/types';
 
 @Options({
   components: {
@@ -208,7 +208,10 @@ export default class ProductView extends Vue {
           font-size: 1.8em;
           font-weight: 500;
           text-align: left;
-          margin: 30px 30px;}
+          margin: 30px 30px;
+          @include mq('phone-wide'){
+            font-size: 1.5em;
+          }}
       .product-text p{
         font-size: 1.2em;
         text-align: left;
