@@ -43,22 +43,20 @@ export default class ProductCard extends Vue {
   }
 
   buyProduct(i:number) {
-    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
-    // eslint-disable-next-line
-    else return this.changeEnableNoProduct();
+    if (this.checkProductQuantity(i)) return this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i);
+    return this.changeEnableNoProduct();
   }
 
   cartProduct(i:number) {
     if (this.checkProductQuantity(i)) return this.reduceProductsQuantity(i);
-    // eslint-disable-next-line
-    else return this.changeEnableNoProduct();
+    return this.changeEnableNoProduct();
   }
 
   checkProductQuantity(ID:number) {
     const index = this.getProducts.findIndex((obj) => obj.id === ID);
     console.log(this.getProducts[index].quantity);
-    if (this.getProducts[index].quantity > 0) return true; // eslint-disable-next-line
-    else return false;
+    if (this.getProducts[index].quantity > 0) return true;
+    return false;
   }
 }
 </script>

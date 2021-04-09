@@ -36,6 +36,17 @@ export default class Category extends Vue {
     } else (result = this.getCatList);
     return (result);
   }
+
+  // maineCategory(cat:string) {
+  //   let result: any[] = [];
+  //   if (cat === 'gadgets' || cat === 'goods') {
+  //     return this.getCatList.forEach((c) => {
+  //       if (c.cat === cat) (result.push(c));
+  //     });
+  //   }
+  //   (result = this.getCatList);
+  //   return (result);
+  // }
 }
 </script>
 

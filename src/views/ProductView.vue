@@ -69,15 +69,13 @@ export default class ProductView extends Vue {
   }
 
   buyProduct(i:number) {
-    if (this.checkProductQuantity(i)) return (this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i));
-    // eslint-disable-next-line
-    else return this.changeEnableNoProduct();
+    if (this.checkProductQuantity(i)) return this.$router.push({ name: 'Cart' }) && this.reduceProductsQuantity(i);
+    return this.changeEnableNoProduct();
   }
 
   cartProduct(i:number) {
     if (this.checkProductQuantity(i)) return this.reduceProductsQuantity(i);
-    // eslint-disable-next-line
-    else return this.changeEnableNoProduct();
+    return this.changeEnableNoProduct();
   }
 
   checkProductQuantity(ID:number) {
