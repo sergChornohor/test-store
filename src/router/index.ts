@@ -11,50 +11,106 @@ const routes = [
     path: '/',
     name: 'Home',
     component: MainePage,
-    meta: { breadCrumbs: [{ to: '/', text: '/' }] },
-  },
-  {
-    path: '/category/',
-    name: 'Category',
-    component: Category,
-    meta: { breadCrumbs: [{ to: '/category', text: 'categories' }] },
+    meta: { breadCrumbs: [{ to: '/', text: 'Maine' }] },
     children: [
       {
-        path: ':cat',
+        path: '/category/',
+        name: 'Category',
         component: Category,
-        props: true,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            text: '> Categories',
+          }],
+        },
+        children: [
+          {
+            path: ':cat',
+            component: Category,
+            props: true,
+          },
+        ],
+      },
+      {
+        path: '/products',
+        name: 'AllProducts',
+        component: Products,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            text: '> Products',
+          }],
+        },
+      },
+      {
+        path: '/products/:title',
+        name: 'Products',
+        component: Products,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            to: '/products',
+            text: '> Products',
+          },
+          {
+            text: '> ',
+          }],
+        },
+      },
+      {
+        path: '/product/:id',
+        name: 'ProductDetail',
+        component: ProductView,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            text: '> Product',
+          }],
+        },
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: About,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            to: '/about',
+            text: '> About',
+          }],
+        },
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: CartView,
+        meta: {
+          breadCrumbs: [{
+            to: '/',
+            text: 'Maine',
+          },
+          {
+            to: '/cart',
+            text: '> Cart',
+          }],
+        },
       },
     ],
-  },
-  {
-    path: '/products',
-    name: 'AllProducts',
-    component: Products,
-    meta: { breadCrumbs: [{ to: '/products', text: 'products' }] },
-  },
-  {
-    path: '/products/:title',
-    name: 'Products',
-    component: Products,
-    meta: { breadCrumbs: [{ to: '/products', text: 'products' }] },
-  },
-  {
-    path: '/product/:id',
-    name: 'ProductDetail',
-    component: ProductView,
-    meta: { breadCrumbs: [{ to: '/product', text: 'product' }] },
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
-    meta: { breadCrumbs: [{ to: '/about', text: 'about' }] },
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: CartView,
-    meta: { breadCrumbs: [{ to: '/cart', text: 'cart' }] },
   },
 ];
 

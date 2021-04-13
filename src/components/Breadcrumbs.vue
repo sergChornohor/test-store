@@ -1,12 +1,10 @@
 <template lang="pug">
 .breadcrumbs.flex
-  ul
+  ul.flex
     li(v-for='(breadcrumb, idx) in breadcrumbList'
     :key='idx'
     @click='routeTo(idx)'
-    :class="{'linked': !!breadcrumb.to}") {{ breadcrumb.to }}
-      //- router-link(:path="{ path: getPath(crumb) }">{{ getBreadcrumb(crumb.meta.breadcrumb) }})
-
+    :class="{'linked': !!breadcrumb.to}") {{ breadcrumb.text }}
 </template>
 
 <script lang="ts">
@@ -37,6 +35,17 @@ export default class BreadCrumbs extends Vue {
 .breadcrumbs{
   width: 100%;
   height: 20px; }
+  ul{
+    padding-top: 2px;
+  }
+  li{
+    padding-left: 5px;
+  }
   li:hover{
-    cursor: pointer;}
+    cursor: pointer;
+    color: $cart-btn-brdr;}
+  li:hover:last-child{
+    cursor: default;
+    color: unset;
+  }
 </style>
