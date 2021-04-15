@@ -11,6 +11,7 @@ export interface ProductCategories{
 }
 
 export interface breadCrumbsListInterface{
+    path: string,
     to: string,
     text: string,
 }

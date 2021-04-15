@@ -151,6 +151,9 @@ font-weight: 400;
 .justify-center{
   @include justify-content(center);
 }
+.justify-start{
+  @include justify-content(flex-start);
+}
 .justify-end{
   @include justify-content(flex-end);
 }
