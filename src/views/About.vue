@@ -23,7 +23,8 @@ export default class Category extends Vue {
 @import '../assets/style.scss';
 .container{
   width: 100%;
-  height: 100%;}
+  height: 100%;
+  padding-right: 10%;}
 .store-name{
   width: 50%;
   height: 100px;

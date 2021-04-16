@@ -175,13 +175,13 @@ font-weight: 400;
   padding: 30px 20px 20px 30px;
 }
 .wrapper{
-  width: 70%;
-  max-width: 1050px;
+  width: 80%;
+  max-width: 1150px;
   margin: 0 auto;
  // flex-direction: row-reverse;
   height: 100%;  
   @include mq('tablet'){
-    width: 80%;
+    width: 90%;
   }
   @include mq('phone-wide'){
     width: 100%;

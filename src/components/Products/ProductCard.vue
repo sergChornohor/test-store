@@ -67,10 +67,10 @@ export default class ProductCard extends Vue {
 .card{
   width: 90%;
   height: 90%;
-  margin: 25px;
+  margin: 15px;
   border-radius: 10px;
   @include mq('tablet'){
-    margin: 15px;
+    margin: 5px;
   }}
 .card:hover{
   transform: scale(1.1);

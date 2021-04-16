@@ -77,11 +77,11 @@ table{
       height: 300px;
       width: 300px;
       border-radius: 10px;
-      margin: 15px;
+      margin: 5px;
       @include mq('tablet'){
         width: 240px;
         height: 240px;
-        margin: 10px;
+        margin: 0px;
       }
       }
   }
