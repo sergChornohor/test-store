@@ -44,7 +44,13 @@ export default class CartErrors extends Vue {
     background-color: $bg-color1;
     padding-bottom: 15px;
     opacity: 1;
-    z-index: 999;}
+    z-index: 999;
+    @include mq('tablet'){
+      width: 60%;
+    }
+    @include mq('phone-wide'){
+      width: 80%;
+    }}
     .modal-content{
       width: 100%;
       height: 400px;

@@ -98,7 +98,9 @@ export default class ProductView extends Vue {
   .product-maine-info{
     width: 100%;
     height: auto;
-    padding: 30px;}
+    padding: 30px;
+    @include mq('phone-wide'){
+      padding: 0px; }}
     .product-name{
       width: 100%;
       height: 80px;
@@ -145,7 +147,7 @@ export default class ProductView extends Vue {
             font-size: 1.9em;
           }
           @include mq('phone-wide'){
-            font-size: 1.8em;
+            font-size: 1.6em;
           }}
       .product-quantity{
         padding-left: 50px;
@@ -208,10 +210,13 @@ export default class ProductView extends Vue {
           text-align: left;
           margin: 30px 30px;
           @include mq('phone-wide'){
-            font-size: 1.5em;
+            font-size: 1.3em;
           }}
       .product-text p{
         font-size: 1.2em;
         text-align: left;
-        margin: 30px 30px;}
+        margin: 30px 30px;
+        @include mq('phone-wide'){
+          font-size: 1.1em;
+        }}
 </style>
